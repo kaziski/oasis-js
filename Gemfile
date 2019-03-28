@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use pg as the database for Active Record
 gem 'pg'
 gem 'devise'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
