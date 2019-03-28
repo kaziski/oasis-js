@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'pg'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
