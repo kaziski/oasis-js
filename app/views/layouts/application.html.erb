@@ -34,8 +34,9 @@
         <p class="navbar-text pull-right">
           <% if user_signed_in? %>
             <strong><%= logged_in_as %></strong>
-            <%# Logged in as <strong><%= current_user.username %>
-            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <% if current_user.username.present? %>
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <% end %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
           <% else %>
             <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
