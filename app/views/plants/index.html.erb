@@ -1,5 +1,5 @@
 <ul>
 <% @plants.each do |plant| %>
-  <li><%= plant.name %></li>
+  <li><%= link_to plant.name, plant_path(plant) %></li>
 <% end %>
 </ul>

@@ -1,0 +1,10 @@
+<%#= binding.pry %>
+
+<h3><%= @plant.name %></h3><br>
+<h4>Is it planted in your garden? <%= in_the_garden? %></h4><br>
+<h4>Is it edible? <%= edible? %></h4><br>
+<h4>Is it an annual plant? <%= annual? %></h4><br>
+<h4><%= memo %></h4><br>
+
+<%=  link_to "See all the plants again", plants_path%>
+<%#=  link to edit %>

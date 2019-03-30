@@ -20,11 +20,12 @@ class PlantsController < ApplicationController
   end
 
   def show
+    @plant = Plant.find_by(id: params[:id])
   end
 
   private 
 
   def plant_params
-    params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id)
+    params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note)
   end
 end
