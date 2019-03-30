@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   end
 
   resources :actions
+  resources :plants
   
-  get '/plants', to: 'plants#index', as: 'plants'
-  get '/plants/new', to: 'plants#new'
-  post '/plants', to: 'plants#create'
+  # get '/plants', to: 'plants#index', as: 'plants'
+  # get '/plants/new', to: 'plants#new'
+  # post '/plants', to: 'plants#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 end

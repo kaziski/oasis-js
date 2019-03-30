@@ -7,21 +7,19 @@ class PlantsController < ApplicationController
   def new
     @user = current_user
     @plant = @user.plants.build
-    # @plant = Plant.new(user_id: current_user.id)
   end
 
   def create
-    binding.pry
-    
-  #   @plant = Plant.new(plant_params)
-  #   @plant.save
-  # #   redirect_to plant_path(@plant)
-  #   @plant = Plant.new(plant_params)
-  #   if @plant.save
-  #     redirect_to plant_path(@plant)
-    # else
-    #   render :new
-    # end
+    @plant = Plant.new(plant_params)
+    if @plant.save
+      redirect_to plants_path
+      # redirect_to plant_path(@plant)
+    else
+      render :new
+    end
+  end
+
+  def show
   end
 
   private 
