@@ -1,1 +1,5 @@
-<h2>Logged in homepage YES!!!!!!</h2>
+<ul>
+<% @plants.each do |plant| %>
+  <li><%= plant.name %></li>
+<% end %>
+</ul>
