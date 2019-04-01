@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+  before_action :set_plant, only: [:show, :edit, :update, :destroy]
 
   def index
     @plants = Plant.all
@@ -19,16 +20,13 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find_by(id: params[:id])
   end
 
   def edit
     @user = current_user
-    @plant = Plant.find_by(id: params[:id])
   end
 
   def update
-    @plant = Plant.find_by(id: params[:id])
     @plant.update(plant_params)
     redirect_to plants_path
   end
@@ -37,5 +35,9 @@ class PlantsController < ApplicationController
 
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note)
+  end
+
+  def set_plant
+    @plant = Plant.find_by(id: params[:id])
   end
 end
