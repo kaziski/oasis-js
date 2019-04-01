@@ -10,21 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_132157) do
+ActiveRecord::Schema.define(version: 2019_04_01_133727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string "action_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "plantactions", force: :cascade do |t|
-    t.date "month"
-    t.string "plant_id"
-    t.string "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +30,14 @@ ActiveRecord::Schema.define(version: 2019_03_29_132157) do
     t.datetime "updated_at", null: false
     t.boolean "edible"
     t.boolean "annual"
+  end
+
+  create_table "plants_actions", force: :cascade do |t|
+    t.date "month"
+    t.string "plant_id"
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
