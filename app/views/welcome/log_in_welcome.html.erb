@@ -1,6 +1,12 @@
 <h2>Welcome to Oasis App!</h2><br>
-<h3>What would you like to do? </h3><br><br>
-<%= link_to "Enter new plant", new_plant_path %><br><br>
-<%#=  This will be a nested route plants/user/:id? %>
-<%#= link_to "View all the plants belongs to #{current_user.name}" %>
-<%= link_to "View all the plants", plants_path %>
+<% if number_of_plants > 0 %>
+  <h3>You have <b><%= number_of_plants %></b> plants in your log</h3><br><br>
+  <%= link_to "View all the plants", plants_path %><br><br>
+<% else %>
+<h4>Looks like you don't have any plants in your log.</h4>
+<h4>Let's get started by entering some plants in your log!</h4>
+<% end %><br><br>
+
+
+
+<%= link_to "Enter new plant", new_plant_path %>
