@@ -1,5 +1,5 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: [:show, :edit, :update, :destroy]
+  before_action :set_plant, only: [:show, :edit, :update]
 
   def index
     @plants = Plant.all
@@ -29,6 +29,15 @@ class PlantsController < ApplicationController
   def update
     @plant.update(plant_params)
     redirect_to plants_path
+  end
+
+  def destroy
+    Plant.find(params[:id]).destroy
+    redirect_to plants_path
+  end
+
+  def in_garden
+    @plants = Plant.all
   end
 
   private 
