@@ -37,7 +37,15 @@ class PlantsController < ApplicationController
   end
 
   def in_garden
-    @plants = Plant.all
+    @plants = Plant.show_all_ingarden(current_user)
+  end
+
+  def edible
+    @plants = Plant.show_all_edible(current_user)
+  end
+
+  def annual
+    @plants = Plant.show_all_annual(current_user)
   end
 
   private 
@@ -49,4 +57,5 @@ class PlantsController < ApplicationController
   def set_plant
     @plant = Plant.find_by(id: params[:id])
   end
+
 end

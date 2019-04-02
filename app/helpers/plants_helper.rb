@@ -30,20 +30,8 @@ module PlantsHelper
     end
   end
 
-  def show_in_the_garden
-    @planted = @plants.select {|plant| plant.user_id.to_i == current_user.id && plant.in_the_garden? == true}
-    @planted.map{|p|p.name}.shift.strip
-  end
+  
 
-  def show_all_edible
-    @planted = @plants.select {|plant| plant.user_id.to_i == current_user.id && plant.edible? == true}
-    @planted.map{|p|p.name}.shift.strip
-  end
-
-  def show_all_annual
-    @planted = @plants.select {|plant| plant.user_id.to_i == current_user.id && plant.annual? == true}
-    @planted.map{|p|p.name}.shift.strip
-  end
 
 
 end
