@@ -1,4 +1,4 @@
 class PlantsAction < ApplicationRecord
-  belongs_to :plants
-  belongs_to :actions
+  belongs_to :plant
+  belongs_to :action
 end
