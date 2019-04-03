@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :plants
-  has_many :actions, through: :plantactions
+  has_many :actions, through: :plants_action
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

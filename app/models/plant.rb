@@ -1,7 +1,8 @@
 class Plant < ApplicationRecord
   belongs_to :user
-  has_many :plantactions
-  has_many :actions, through: :plantsactions
+  has_many :plants_action
+  has_many :actions, through: :plants_action
+  accepts_nested_attributes_for :actions, :allow_destroy => true
   validates :name, uniqueness: true, presence: true
   validates_inclusion_of :in_the_garden?, in: [true, false]
   validates_inclusion_of :edible?, in: [true, false]
