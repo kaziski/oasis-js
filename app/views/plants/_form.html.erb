@@ -5,25 +5,32 @@
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
   <%= f.hidden_field :user_id, :value => @user.id %>
-
-  What do you need to do to the plant? When do they happen?
-  <br><br><ul>
+  <br><br>
+  <h4>What do you need to do to the plant? When do they happen?</h4>
+  <br><br>
+  <%# <ul>
   <%=  f.collection_check_boxes "action_ids", Action.all, :id, :action_name do |a|%>
-  <li>
-    <%= a.label %>
-    <%= a.check_box %>
-  </li>
-  <% end %><br><br>
-  <%= f.fields_for :actions, @plant.actions.build do |actions_fields| %>
-    Add more action: <%= actions_fields.text_field :action_name %>
+  
+    <%#= a.label %>
+    <%#= a.check_box %>
+  
+  <%# end %>
+
+    <%= f.fields_for :actions, Action.all do |af| %>
+    <ul>
+      <%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
+      <li>
+      <%= paf.label af.object.action_name %>
+          <%= paf.check_box "action_id"%><br>
+          <%= paf.label "select a month" %><%= paf.date_field :month %>
+      <%end %></li>
+      </ul>
+    <%end %>
+  <%#= f.fields_for :actions, @plant.actions.build do |actions_fields| %>
+    Add more action: <%#= actions_fields.text_field :action_name %>
   </ul><br><br>
   <%= f.submit %>
 
   <% end %>
-<% end %><br><br>
+  
 
-
-    <%#= f.fields_for :actions, Action.all do |af| %>
-      <%#= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
-          <%#= paf.check_box "action_id", {}, af.object.id, "" %>
-      <%# end %>

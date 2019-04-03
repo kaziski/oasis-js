@@ -13,7 +13,7 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     if @plant.save
-      redirect_to plants_path
+      redirect_to plant_path(@plant)
     else
       render :new
     end
@@ -51,7 +51,10 @@ class PlantsController < ApplicationController
   private 
 
   def plant_params
-    params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, action_ids:[], actions_attributes: [:action_name])
+    params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
+      # actions_attributes: [:action_name, plants_actions:[:action_id, :month]])
+        actions_attributes: [:action_name, plants_action_attributes:[:action_id, :month]])
+
   end
 
   def set_plant

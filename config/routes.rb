@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get '/plants/edible', to: 'plants#edible'
   get '/plants/annual', to: 'plants#annual'
 
-  resources :plants 
+  resources :plants do
+    resources :actions, only: [:index]
+  end
 
   # resources :plants do
   #   :plantsactions
