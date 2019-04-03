@@ -1,14 +1,5 @@
 <h3>Let's enter a plant </h3>
-<%= form_for @plant do |f| %>
-  Name: <%= f.text_field :name %><br><br>
-  Is it planted in your garden now?  <%= f.check_box :in_the_garden%><br><br>
-  Is it adible?  <%= f.check_box :edible %><br><br>
-  Is it an annual plant?  <%= f.check_box :annual %><br><br>
-  Memo: <%= f.text_field :note %><br><br>
-  <%= f.hidden_field :user_id, :value => @user.id %>
-  <%=  f.collection_check_boxes :action_ids, Action.all, :id, :action_name%><br><br>
-  <%= f.submit %>
-  
-<% end %>
+<%= render 'form' %>
+<br><br>
   
 <%= link_to "View all the plants", plants_path %>
