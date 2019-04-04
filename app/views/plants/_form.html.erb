@@ -4,28 +4,20 @@
   Is it adible?  <%= f.check_box :edible %><br><br>
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
-  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <br><br>
   <h4>What do you need to do to the plant? When do they happen?</h4>
   <br><br>
-  <%# <ul>
-  <%=  f.collection_check_boxes "action_ids", Action.all, :id, :action_name do |a|%>
   
-    <%#= a.label %>
-    <%#= a.check_box %>
-  
-  <%# end %>
 
-    <%= f.fields_for :actions, Action.all do |af| %>
-    <ul>
-      <%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
-      <li>
-      <%= paf.label af.object.action_name %>
-          <%= paf.check_box "action_id"%><br>
-          <%= paf.label "select a month" %><%= paf.date_field :month %>
-      <%end %></li>
-      </ul>
-    <%end %>
+      <%= f.fields_for :actions, Action.all do |fa| %>
+        <%= fa.check_box :id%><%= fa.label :action_name%>
+          <%= fa.fields_for :plants_action, fa.object.plants_action.build do |fpa| %>
+          <%= fpa.date_field :month %>
+        <% end %> 
+      <% end %>
+     
+
   <%#= f.fields_for :actions, @plant.actions.build do |actions_fields| %>
     Add more action: <%#= actions_fields.text_field :action_name %>
   </ul><br><br>
