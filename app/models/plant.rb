@@ -31,3 +31,11 @@ class Plant < ApplicationRecord
   end
 
 end
+
+# "actions_attributes"=>{
+#   "0"=>{"plants_action_attributes"=>{"0"=>{"action_id"=>"0", "month"=>""}}, "id"=>"1"}, 
+#   "1"=>{"plants_action_attributes"=>{"0"=>{"action_id"=>"1", "month"=>"2019-04-12"}}, "id"=>"2"}, 
+#   "2"=>{"plants_action_attributes"=>{"0"=>{"action_id"=>"0", "month"=>""}}, "id"=>"3"}, 
+#   "3"=>{"plants_action_attributes"=>{"0"=>{"action_id"=>"1", "month"=>"2019-05-18"}}, "id"=>"4"}, 
+#   "4"=>{"plants_action_attributes"=>{"0"=>{"action_id"=>"0", "month"=>""}}, "id"=>"9"}}} 
+#   permitted: false>, "commit"=>"Create Plant", "controller"=>"plants", "action"=>"create"} permitted: false>

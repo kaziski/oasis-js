@@ -12,6 +12,7 @@ class PlantsController < ApplicationController
 
   def create
     @plant = Plant.new(plant_params)
+    binding.pry
     if @plant.save
       redirect_to plant_path(@plant)
     else

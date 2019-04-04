@@ -7,28 +7,29 @@
   <%= f.hidden_field :user_id, :value => @user.id %>
   <br><br>
   <h4>What do you need to do to the plant? When do they happen?</h4>
+  <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
-  <%# <ul>
-  <%=  f.collection_check_boxes "action_ids", Action.all, :id, :action_name do |a|%>
   
-    <%#= a.label %>
-    <%#= a.check_box %>
-  
-  <%# end %>
-
     <%= f.fields_for :actions, Action.all do |af| %>
     <ul>
       <%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
       <li>
-      <%= paf.label af.object.action_name %>
-          <%= paf.check_box "action_id"%><br>
+      <%#= binding.pry %>
+      <%# Currently, it's not passing the id. If it's checked, it's passing "1" as action_id
+      Need to find a way to pass action_id eg. action plant should be action_id 2 %>
+          <%#= paf.label af.object.action_name %> <%# paf.check_box :action, af.object.id, {} %>  
+          <%= paf.label af.object.action_name %> <%= paf.check_box :action_id, {checked: false} %>  
+
           <%= paf.label "select a month" %><%= paf.date_field :month %>
       <%end %></li>
       </ul>
     <%end %>
   <%#= f.fields_for :actions, @plant.actions.build do |actions_fields| %>
     Add more action: <%#= actions_fields.text_field :action_name %>
-  </ul><br><br>
+    <%# Can this be a link to plant/:id/action/new %>
+    <%# Go to the page, create a new action then when I come back, 
+    the page is updated and added a new action??? %>
+  
   <%= f.submit %>
 
   <% end %>
