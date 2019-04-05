@@ -30,4 +30,15 @@ class Plant < ApplicationRecord
     end
   end
 
+
+  # def plants_action_attributes=(plant_action_attributes)
+  #   plant_action_attributes.values.each do |plant_action_attribute|
+  #     binding.pry
+  #     if plant_action_attribute[:month].present?
+  #       plant_action = PlantsAction.find_or_create_by(plant_action_attribute)
+  #       self.plants_action << plant_action
+  #     end
+  #   end
+  # end
+
 end

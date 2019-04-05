@@ -4,13 +4,13 @@ class Action < ApplicationRecord
   accepts_nested_attributes_for :plants_action
 
   def plants_action_attributes=(plant_action_attributes)
+    binding.pry
     plant_action_attributes.values.each do |plant_action_attribute|
       if plant_action_attribute[:month].present?
-        plant_action = Action.find_or_create_by(plant_action_attribute)
+        plant_action = PlantsAction.find_or_create_by(plant_action_attribute)
         self.plants_action << plant_action
       end
     end
   end
 
 end
-

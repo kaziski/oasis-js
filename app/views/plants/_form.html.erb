@@ -9,11 +9,7 @@
   <h4>What do you need to do to the plant? When do they happen?</h4>
   <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
-  <%# Currently, it's not passing the id. If it's checked, it's passing "1" as action_id
-      Need to find a way to pass action_id eg. action plant should be action_id 2 %>
-      <%# :action_id after checkbox needs to be named "checked" or something? first value in actions_attributes are index. not id
-       %>
-       <%# Maybe check def action_attributes %>
+  
     <%= f.fields_for :actions, Action.all do |af| %>
       <%= af.label af.object.action_name %> <%= af.check_box :action_name, {}, af.object.id, ""%>  
     <ul><%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
