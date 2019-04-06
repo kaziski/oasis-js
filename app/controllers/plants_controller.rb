@@ -15,7 +15,6 @@ class PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
 
     if @plant.save
-binding.pry
       redirect_to plant_path(@plant)
     else
       render :new
