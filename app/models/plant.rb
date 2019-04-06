@@ -21,21 +21,20 @@ class Plant < ApplicationRecord
     where(user_id: user.id, annual: true )
   end
 
-  def actions_attributes=(action_attributes)
-    action_attributes.values.each do |action_hash|
-
-      if action_hash[:plants_action][:month].present?
-        action = Action.find_or_create_by(id: action_hash[:id])
-        PlantsAction.create(
-          month: action_hash[:plants_action][:month],
-          action_id: action.id,
-          plant_id: self.id
-          )
-        # pa_hash = plants_action_attributes[0]
-        self.actions << action
-      end
-    end
-  end
+  # def actions_attributes=(action_attributes)
+  #   action_attributes.values.each do |action_hash|
+      
+  #     if action_hash[:plants_action][:month].present?
+  #       action = Action.find_or_create_by(id: action_hash[:id])
+  #       binding.pry
+  #       PlantsAction.create(month: action_hash[:plants_action][:month], 
+  #         action_id: action.id, 
+  #         plant_id: self.id)
+  #       # pa_hash = plants_action_attributes[0]
+  #       self.actions << action
+  #     end
+  #   end
+  # end
 # "actions_attributes"=>{
 #   "0"=>{"action_name"=>"", "plants_action_attributes"=>{"0"=>{"month"=>""}}, "id"=>"1"}, 
 #   "1"=>{"action_name"=>"2", "plants_action_attributes"=>{"0"=>{"month"=>"2019-04-05"}}, "id"=>"2"}, 

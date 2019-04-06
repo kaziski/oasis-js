@@ -51,16 +51,11 @@ class PlantsController < ApplicationController
 
   private 
 
-  # def plant_params
-  #   params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
-  #       actions_attributes:[:action_id, plants_action:[:month]])
-  #       # actions_attributes:[:action_name], plants_action_attributes:[:month])
-  # end
 
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
-        :actions_attributes => [:id, 
-          :plants_action => [:month]
+        :actions_attributes => [
+          :plants_action_attributes => [:month]
         ])
         # actions_attributes:[:action_name], plants_action_attributes:[:month])
   end
