@@ -7,6 +7,7 @@
 <% if @plant.actions.count > 0 %>
   <p>Actions</p>
   <ul>
+  <%= binding.pry %>
     <% @plant.actions.each do |action| %>
       <li><%= action.action_name %></li>
     <% end %>

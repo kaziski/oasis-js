@@ -11,7 +11,9 @@
   <br><br>
   
     <%= f.fields_for :actions, Action.all do |af| %>
-      <%= af.label af.object.action_name %> <%= af.check_box :action_name, {}, af.object.id, ""%>  
+      <%#= af.label af.object.action_name %> <%#= af.check_box :action_name, {}, af.object.id, ""%>  
+      <%= af.label af.object.action_name %> <%= af.check_box :id, {name: "action_id"}, ""%>  
+
     <ul><%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
       <li>
           <%= paf.label "select a month" %><%= paf.date_field :month %>
