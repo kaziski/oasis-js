@@ -51,4 +51,13 @@ class Plant < ApplicationRecord
   #   end
   # end
 
+
+  def actions_attributes=(action_attributes)
+    action_attributes.values.each do |action_hash|
+       if action_hash[:id].present?
+        action = Action.find_or_create_by(id: action_hash[:id])
+        self.actions << action
+      end
+    end
+  end
 end

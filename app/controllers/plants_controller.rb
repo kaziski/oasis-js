@@ -7,12 +7,14 @@ class PlantsController < ApplicationController
 
   def new
     @user = current_user
-    @plant = Plant.new
-    @plant.actions.build.plants_action.build
+    # @plant = Plant.new
+    # @plant.actions.build.plants_action.build
+    @plant = @user.plants.build
   end
 
   def create
     @plant = Plant.new(plant_params)
+    # binding.pry
     if @plant.save
       redirect_to plant_path(@plant)
     else
@@ -54,7 +56,7 @@ class PlantsController < ApplicationController
 
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
-        :actions_attributes => [
+        :actions_attributes => [:id,
           :plants_action_attributes => [:month]
         ])
         # actions_attributes:[:action_name], plants_action_attributes:[:month])
