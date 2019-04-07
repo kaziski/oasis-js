@@ -13,7 +13,7 @@ class PlantsController < ApplicationController
   def create
 
     @plant = Plant.new(plant_params)
-
+# binding.pry
     if @plant.save
       redirect_to plant_path(@plant)
     else
@@ -30,7 +30,7 @@ class PlantsController < ApplicationController
 
   def update
     @plant.update(plant_params)
-    redirect_to plants_path
+    redirect_to plant_path(@plant)
   end
 
   def destroy
@@ -54,10 +54,10 @@ class PlantsController < ApplicationController
 
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
-        actions_attributes:[:action_name, plants_action_attributes:[][:month]
-        # actions_attributes:[:action_name], plants_action_attributes:[:month])
+        actions_attributes:[[:action_name], plants_action_attributes:[:month]
+    ])
   end
-
+# actions_attributes:[:id, plants_action_attributes:[:month]])
   def set_plant
     @plant = Plant.find_by(id: params[:id])
   end

@@ -21,6 +21,17 @@ class Plant < ApplicationRecord
     where(user_id: user.id, annual: true )
   end
 
+  #Using id
+  # def actions_attributes=(action_attributes)
+  #   action_attributes.values.each do |action_hash|
+  #     binding.pry
+  #     if action_hash[:action_id].present?
+  #       action = Action.find_or_create_by(id: action_hash[:action_id])
+  #       self.actions << action
+  #     end
+  #   end
+  # end
+
   def actions_attributes=(action_attributes)
     action_attributes.values.each do |action_attribute|
       if action_attribute[:action_name].present?
@@ -29,6 +40,7 @@ class Plant < ApplicationRecord
       end
     end
   end
+
 
 
   # def plants_action_attributes=(plant_action_attributes)

@@ -11,6 +11,7 @@
   <br><br>
   
     <%= f.fields_for :actions, Action.all do |af| %>
+      <%#= af.label af.object.action_name %> <%#= af.check_box :id, {name: "action_id"}, ""%>  
       <%= af.label af.object.action_name %> <%= af.check_box :action_name, {}, af.object.id, ""%>  
     <ul><%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
       <li>
