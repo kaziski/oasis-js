@@ -7,8 +7,10 @@ class PlantsController < ApplicationController
 
   def new
     @user = current_user
-    # @plant.actions.build.plants_action.build
     @plant = @user.plants.build
+    Action.all.each do |action|
+      @plant.plants_action.build(action_id: action.id)
+    end
   end
 
   def create
