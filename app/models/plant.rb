@@ -25,7 +25,6 @@ class Plant < ApplicationRecord
   def actions_attributes=(action_attributes)
     action_attributes.values.each do |action_attribute|
       if action_attribute[:id].present?
-        binding.pry
         action = Action.find_or_create_by(id: action_attribute[:id])
         self.actions << action
       end

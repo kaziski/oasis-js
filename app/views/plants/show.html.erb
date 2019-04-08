@@ -3,15 +3,14 @@
 <h4>Is it edible? <%= edible? %></h4><br>
 <h4>Is it an annual plant? <%= annual? %></h4><br>
 <h4><%= memo %></h4><br>
-<%= binding.pry %>
 <% if @plant.actions.count > 0 %>
   <p>Actions</p>
   <ul>
     <% @plant.actions.each do |action| %>
-  
       <li><%= action.action_name %></li>
     <% end %>
   </ul>
+  
 <% end %><br><br>
 
 
