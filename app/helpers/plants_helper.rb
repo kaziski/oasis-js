@@ -30,15 +30,8 @@ module PlantsHelper
     end
   end
 
-  
-  # def find_action_name
-  #   @plant.plants_action.each do |ppa|
-  #     id = ppa.action_id
-  #     Action.find(id)
-  #   end
-  # end
-  def find_action_name(pao)
-    id = pao.action_id
+  def find_action_name(pa)
+    id = pa.object.action_id
     Action.find(id).action_name 
   end 
 
