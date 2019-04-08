@@ -4,15 +4,17 @@
   Is it adible?  <%= f.check_box :edible %><br><br>
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
-  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%#= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
   <br><br>
   <h4>What do you need to do to the plant? When do they happen?</h4>
   <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
   
     <%= f.fields_for :actions, Action.all do |af| %>
-      <%#= af.label af.object.action_name %> <%#= af.check_box :action_name, {}, af.object.id, ""%>  
-      <%= af.label af.object.action_name %> <%= af.check_box :id, {name: "action_id"}, ""%>  
+      <%= af.label af.object.action_name %> <%= af.check_box :action_name, {}, af.object.id, ""%>  
+      <%#= af.label af.object.action_name %> <%#= af.check_box :id, {name: "action_id"}, ""%>  
 
     <ul><%= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
       <li>
