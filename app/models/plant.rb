@@ -1,18 +1,10 @@
 class Plant < ApplicationRecord
   belongs_to :user
-<<<<<<< HEAD
-  has_many :plants_action
-  has_many :actions, through: :plants_action
-  accepts_nested_attributes_for :actions, :allow_destroy => true
-
-  validates :name, uniqueness: true, presence: true
-=======
   has_many :plants_actions
   has_many :actions, through: :plants_actions
   accepts_nested_attributes_for :plants_actions, :allow_destroy => true
 
   validates :name, presence: true
->>>>>>> triple_nested
   validates_inclusion_of :in_the_garden?, in: [true, false]
   validates_inclusion_of :edible?, in: [true, false]
   validates_inclusion_of :annual?, in: [true, false]
