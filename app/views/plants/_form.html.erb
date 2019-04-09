@@ -4,29 +4,20 @@
   Is it adible?  <%= f.check_box :edible %><br><br>
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
-  <%#= f.hidden_field :user_id, :value => current_user.id %>
 
   <br><br>
   <h4>What do you need to do to the plant? When do they happen?</h4>
   <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
-   <%= f.fields_for :actions, @plant.plants_action do |pa| %>
+  
+   <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
     <ul>
-        <li><%= pa.label find_action_name(pa) %>  <%= pa.check_box :id, {id: "action_id"}, pa.object.action_id, ""%></li>
-            <%= pa.fields_for :plants_action, pa.object.action.plants_action.build do |paf| %>
-              <%= paf.label "select a month" %> <%= paf.date_field :month %>
-            <% end %>
+        <li><%= pa.label pa.object.action.action_name %>  <%= pa.check_box :action_id, {}, pa.object.action_id, ""%></li>
+            <%= pa.label "select a month" %> <%= pa.date_field :month %>
     </ul>
-  <% end %>
-      <%#= pa.label pa.object.action_name %> <%#= pa.check_box :action_name, {}, pa.object.id, ""%>  
-      <%#= pa.label "select a month" %><%#= pa.date_field :month %>
-      <%#= af.label af.object.action_name %> <%#= af.check_box :action_name, {}, af.object.id, ""%>  
-      <%#= af.label af.object.action_name %> <%#= af.check_box :id, {name: "action_id"}, ""%>  
-      <%#= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
+
+  <%end  %>
       
-          <%#= paf.label "select a month" %><%#= paf.date_field :month %>
-      
-    <%#end %>
     Add more action: <%#= actions_fields.text_field :action_name %>
     <%# Can this be a link to plant/:id/action/new %>
     <%# Go to the page, create a new action then when I come back, 

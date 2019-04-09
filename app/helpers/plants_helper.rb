@@ -31,7 +31,8 @@ module PlantsHelper
   end
 
   def find_action_name(pa)
-    id = pa.object.action_id
+    # binding.pry
+    id = pa.object.action
     Action.find(id).action_name 
   end 
 

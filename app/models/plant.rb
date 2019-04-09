@@ -1,8 +1,8 @@
 class Plant < ApplicationRecord
   belongs_to :user
-  has_many :plants_action
-  has_many :actions, through: :plants_action
-  accepts_nested_attributes_for :actions, :allow_destroy => true
+  has_many :plants_actions
+  has_many :actions, through: :plants_actions
+  accepts_nested_attributes_for :plants_actions, :allow_destroy => true
 
   validates :name, presence: true
   validates_inclusion_of :in_the_garden?, in: [true, false]
@@ -22,11 +22,15 @@ class Plant < ApplicationRecord
   end
 
 
-  def actions_attributes=(action_attributes)
-    action_attributes.values.each do |action_attribute|
-      if action_attribute[:id].present?
-        action = Action.find_or_create_by(id: action_attribute[:id])
-        self.actions << action
+  def plants_actions_attributes=(plant_action_attribute)
+    plant_action_attribute.values.each do |plant_action_hash|
+
+    if plant_action_hash[:month].present?
+      pa = PlantsAction.new(
+        month: plant_action_hash[:month],
+        action_id: plant_action_hash[:action_id],
+        )
+        self.plants_actions << pa
       end
     end
   end
