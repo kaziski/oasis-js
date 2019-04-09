@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_133727) do
     t.string "name"
     t.boolean "in_the_garden"
     t.text "note"
-    t.string "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "edible"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2019_04_01_133727) do
 
   create_table "plants_actions", force: :cascade do |t|
     t.date "month"
-    t.string "plant_id"
-    t.string "user_id"
+    t.integer "plant_id"
+    t.integer "action_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

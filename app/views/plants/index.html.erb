@@ -1,16 +1,17 @@
+<h4>Plants you have logged </h4><br>
 <ul>
 <% @plants.each do |plant| %>
-  <% if plant.user_id.to_i ==  current_user.id%>
+  <% if plant.user_id ==  current_user.id%>
     <li><%= link_to plant.name, plant_path(plant) %></li>
   <% end %>
 <% end %>
-</ul>
+</ul><br><br><br>
 
 <%= link_to "Enter more plant", new_plant_path %><br><br>
 
-<%= link_to "See all the plants in the garden", plants_in_garden_path %><br><br>
-<%= link_to "See all the plants you logged that are edible", plants_edible_path %><br><br>
-<%= link_to "See all the plants you logged that are annual", plants_annual_path %><br><br>
+<%= link_to "View all the plants in the garden", plants_in_garden_path %><br><br>
+<%= link_to "View edible plants you have", plants_edible_path %><br><br>
+<%= link_to "View annual plants you have", plants_annual_path %><br><br>
 
 
 

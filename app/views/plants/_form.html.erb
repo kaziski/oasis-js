@@ -4,6 +4,27 @@
   Is it adible?  <%= f.check_box :edible %><br><br>
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
-  <%= f.hidden_field :user_id, :value => @user.id %>
+
+  <br><br>
+  <h4>What do you need to do to the plant? When do they happen?</h4>
+  <p>Please select actions need to be taken and set dates or create a new action</p>
+  <br><br>
+  
+   <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
+    <ul>
+        <li><%= pa.label pa.object.action.action_name %>  <%= pa.check_box :action_id, {}, pa.object.action_id, ""%></li>
+            <%= pa.label "select a month" %> <%= pa.date_field :month %>
+    </ul>
+
+  <%end  %>
+      
+    Add more action: <%#= actions_fields.text_field :action_name %>
+    <%# Can this be a link to plant/:id/action/new %>
+    <%# Go to the page, create a new action then when I come back, 
+    the page is updated and added a new action??? %>
+  
   <%= f.submit %>
-<% end %><br><br>
+
+  <% end %>
+  
+

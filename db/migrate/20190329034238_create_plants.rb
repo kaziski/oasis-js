@@ -4,7 +4,7 @@ class CreatePlants < ActiveRecord::Migration[5.2]
       t.string :name
       t.boolean :in_the_garden
       t.text :note
-      t.string :user_id
+      t.integer :user_id
 
       t.timestamps
     end

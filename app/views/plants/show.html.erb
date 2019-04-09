@@ -4,6 +4,16 @@
 <h4>Is it an annual plant? <%= annual? %></h4><br>
 <h4><%= memo %></h4><br>
 
+<h4>Actions taken or to take</h4>
+<% if @plant.actions.count > 0 %>
+  <ul>
+    <% @plant.plants_actions.each do |pa| %>
+      <li><%= pa.action.action_name %>  Date: <%= pa.month %></li>
+    <% end %>
+  </ul>
+<% end %><br><br>
+
+
 <%=  link_to "See all the plants", plants_path%><br><br>
 <%=  link_to "Edit this plant", edit_plant_path %><br><br>
 <%=  link_to "Delete this plant", @plant, method: :delete, data: { confirm: "Really?" } %>

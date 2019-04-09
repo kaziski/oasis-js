@@ -1,5 +1,5 @@
 class Action < ApplicationRecord
-  has_many :plantactions
-  has_many :plants, through: :plantactions
-  accepts_nested_attributes_for :plantactions
+  has_many :plants_actions
+  has_many :plants, through: :plants_actions
+  # accepts_nested_attributes_for :plants_actions
 end

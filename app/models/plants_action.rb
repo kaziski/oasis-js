@@ -1,4 +1,4 @@
 class PlantsAction < ApplicationRecord
-  belongs_to :plants
-  belongs_to :actions
+  belongs_to :plant, optional: true
+  belongs_to :action, optional: true
 end
