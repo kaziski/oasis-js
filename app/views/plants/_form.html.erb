@@ -10,15 +10,16 @@
   <h4>What do you need to do to the plant? When do they happen?</h4>
   <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
-  <%#= binding.pry %>
    <%= f.fields_for :actions, @plant.plants_action do |pa| %>
     <ul>
         <li><%= pa.label find_action_name(pa) %>  <%= pa.check_box :id, {id: "action_id"}, pa.object.action_id, ""%></li>
-    
+            <%= pa.fields_for :plants_action, pa.object.action.plants_action.build do |paf| %>
+              <%= paf.label "select a month" %> <%= paf.date_field :month %>
+            <% end %>
     </ul>
+  <% end %>
       <%#= pa.label pa.object.action_name %> <%#= pa.check_box :action_name, {}, pa.object.id, ""%>  
       <%#= pa.label "select a month" %><%#= pa.date_field :month %>
-  <%end %>
       <%#= af.label af.object.action_name %> <%#= af.check_box :action_name, {}, af.object.id, ""%>  
       <%#= af.label af.object.action_name %> <%#= af.check_box :id, {name: "action_id"}, ""%>  
       <%#= af.fields_for :plants_action, af.object.plants_action.build do |paf| %>
