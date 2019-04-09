@@ -10,9 +10,11 @@ class PlantsController < ApplicationController
     Action.all.each do |action|
       @plant.plants_actions.build(action_id: action.id)
     end
+    @plant.actions.build.plants_actions.build
   end
 
   def create
+    binding.pry
     @plant = current_user.plants.new(plant_params)
     if @plant.save
       redirect_to plant_path(@plant)
