@@ -18,16 +18,13 @@
   <% end  %>
 
       
-    
-    Add more action : <%#= actions_fields.text_field :action_name %>
-    <%# Can this be a link to plant/:id/action/new %>
-    <%# Go to the page, create a new action then when I come back, 
-    the page is updated and added a new action??? %>
     <br><br>
-    <%= f.fields_for :actions do |a| %>
+    Add more action : 
+    
+    <%= f.fields_for :actions, @plant.actions.build do |a| %>
       <%= a.label :action_name %> <%= a.text_field :action_name %><br>
 
-      <%= a.fields_for :plants_actions do |apa| %>
+      <%= a.fields_for :plants_actions , @plant.actions.build_plants_actions do |apa| %>
       <%= apa.label "select a date"  %> <%= apa.date_field :month %>
       <% end  %>
     <% end  %>

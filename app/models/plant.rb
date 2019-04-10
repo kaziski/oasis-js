@@ -36,4 +36,14 @@ class Plant < ApplicationRecord
     end
   end
 
+  def actions_attributes=(action_attribute)
+    # binding.pry
+
+    if action_attribute["0"][:action_name].present?  
+      # Action.create(action_name: action_attribute["0"][:action_name]
+        # month:  action_attribute["0"][:plants_actions][:month] ) 
+    end
+  end
+
 end
+
