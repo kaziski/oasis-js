@@ -24,8 +24,8 @@
     <%= f.fields_for :actions, @plant.actions.build do |a| %>
       <%= a.label :action_name %> <%= a.text_field :action_name %><br>
 
-      <%= a.fields_for :plants_actions , @plant.actions.build_plants_actions do |apa| %>
-      <%= apa.label "select a date"  %> <%= apa.date_field :month %>
+      <%= a.fields_for :plants_actions, @plant.actions.last.plants_actions.build do |apa| %>
+        <%= apa.label "select a date"  %> <%= apa.date_field :month %>
       <% end  %>
     <% end  %>
 
@@ -33,5 +33,28 @@
   <%= f.submit %>
 
   <% end %>
-  
+<%# 
+"plants_actions_attributes"=>{
+  "0"=>{"action_id"=>"1", "month"=>"2019-04-04"}, 
+  "1"=>{"action_id"=>"", "month"=>""}, 
+  "2"=>{"action_id"=>"3", "month"=>"2019-04-30"}, 
+  "3"=>{"action_id"=>"", "month"=>""}}, 
+  "actions_attributes"=>{"0"=>{"action_name"=>"Fertilize", 
+  "plants_actions_attributes"=>{"0"=>{"month"=>"2019-04-17"}}}}} %>
 
+<%# 
+ "plants_actions_attributes"=>{
+   "0"=>{"action_id"=>"", "month"=>""}, 
+   "1"=>{"action_id"=>"2", "month"=>"2019-04-04"}, 
+   "2"=>{"action_id"=>"", "month"=>""}, 
+   "3"=>{"action_id"=>"4", "month"=>"2019-04-30"}},
+   "actions"=>{"action_name"=>"Fertilize",
+ "plants_actions"=>{"month"=>"2019-04-11"} %>
+<%# 
+ "plants_actions_attributes"=>{
+   "0"=>{"action_id"=>"", "month"=>""}, 
+   "1"=>{"action_id"=>"2", "month"=>"2019-04-03"}, 
+   "2"=>{"action_id"=>"", "month"=>""}, 
+   "3"=>{"action_id"=>"4", "month"=>"2019-04-30"}}, 
+   "actions_attributes"=>{"0"=>{"action_name"=>"Fertilize", 
+   "plants_actions_attributes"=>{"0"=>{"month"=>"2019-04-18"}}}}} %>
