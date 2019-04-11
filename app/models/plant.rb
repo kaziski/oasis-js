@@ -37,6 +37,7 @@ class Plant < ApplicationRecord
   end
 
   def actions_attributes=(action_attribute)
+    binding.pry
     if action_attribute["0"][:action_name].present? 
       action = Action.create(action_name: action_attribute["0"][:action_name])
       pa = PlantsAction.new(month: action_attribute["0"][:plants_actions_attributes]["0"][:month],

@@ -23,10 +23,12 @@
         
     <%= f.fields_for :actions do |a| %>
       <%= a.label :action_name %> <%= a.text_field :action_name %><br>
-
+      <%# plant[actions_attributes][0][action_name] %>
       <%= a.fields_for :plants_actions do |apa| %>
       <%= apa.label "select a date"  %> <%= apa.date_field :month %>
+      <%# plant[actions_attributes][0][plants_actions_attributes][0][month] %>
       <% end  %>
+      <br>
     <% end  %>
     
   <br><br>

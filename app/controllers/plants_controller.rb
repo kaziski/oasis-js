@@ -5,12 +5,19 @@ class PlantsController < ApplicationController
     @plants = Plant.all
   end
 
+  # def new
+  #   @plant = Plant.new
+  #   Action.all.each do |action|
+  #     @plant.plants_actions.build(action_id: action.id)
+  #   end
+  #   @plant.actions.build.plants_actions.build
+  # end
+
   def new
     @plant = Plant.new
     Action.all.each do |action|
       @plant.plants_actions.build(action_id: action.id)
     end
-    @plant.actions.build.plants_actions.build
   end
 
   def create
@@ -30,9 +37,12 @@ class PlantsController < ApplicationController
   end
 
   def update
-    @plant.update(plant_params)
-    redirect_to plants_path
+    binding.pry
+    @plant.update_attributes(plant_params
+    )
+    redirect_to plant_path(@plant)
   end
+
 
   def destroy
     Plant.find(params[:id]).destroy
@@ -53,16 +63,36 @@ class PlantsController < ApplicationController
 
   private 
 
+  # def plant_params
+  #   params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note,
+  #     :plants_actions_attributes => [:action_id, :month],
+  #     :actions_attributes => [:action_name, 
+  #       :plants_actions_attributes => [:month]]
+  #   )
+  # end
+
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note,
-         :plants_actions_attributes => [:action_id, :month],
-         :actions_attributes => [:action_name, 
-          :plants_actions_attributes => [:month]]
+      :plants_actions_attributes => [:action_id, :month],
+      :actions_attributes => [:action_name, 
+        :plants_actions_attributes => [:month]]
     )
   end
 
+  def edit_params
+    params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note, 
+      :actions_attributes => [:action_name, :plants_action => [:month] ])
+  end
+
+# plant[:action][:action_name] 
+# plant[:action][:plants_action][:month]
   def set_plant
     @plant = Plant.find_by(id: params[:id])
   end
-
 end
+
+#this was the params in update b4 changing 
+# > <ActionController::Parameters {"utf8"=>"✓", "_method"=>"patch", 
+#   "authenticity_token"=>"WeSe9v7DiNh6K8Pqbe0o6uQSoeiasFmEvv+iLngdx9KAakd0nMmMDtHMvLe22exd0i07Fn4zPVPZvZakM5GmPQ==", 
+#   "plant"=>{"name"=>"Mint", "in_the_garden"=>"0", "edible"=>"1", "annual"=>"1", "note"=>"", 
+#     "action"=>{"action_name"=>"Minty action", "plants_action"=>{"month"=>"2019-04-27"}}}, 
