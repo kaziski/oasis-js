@@ -6,25 +6,37 @@
   Is it adible?  <%= f.check_box :edible %><br><br>
   Is it an annual plant?  <%= f.check_box :annual %><br><br>
   Memo: <%= f.text_field :note %><br><br>
-<br><br>
 
-Add more action : 
+  <br><br>
+  <h4>What do you need to do to the plant? When do they happen?</h4>
+  <p>Please select actions need to be taken and set dates or create a new action</p>
+  <br><br>
+  
+   <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
+    <ul>
+        <li><%= pa.label pa.object.action.action_name %>  <%= pa.check_box :action_id, {checked: false}, pa.object.action_id, ""%></li>
+            <%= pa.label "select a date" %> <%= pa.date_field :month %>
+    </ul>
+    <% end  %>
+
+
+    <br><br>
+    Add more action : 
         
-    <%= f.fields_for @plant.actions.build do |a| %>
-      <%= a.text_field :action_name %><br>
-      <%# plant[actions_attributes][0][action_name] %>
-      <%# plant[:action][:action_name]  %>
-      <%= a.fields_for @plant.plants_actions.build do |apa| %>
+    <%= f.fields_for :actions, @plant.plants_actions.build.build_action do |a| %>
+      <%= a.label :action_name %> <%= a.text_field :action_name %><br>
+      <%= a.fields_for :plants_actions, @plant.plants_actions.build do |apa| %>
       <%= apa.label "select a date"  %> <%= apa.date_field :month %>
-      <%# plant[actions_attributes][0][plants_actions_attributes][0][month] %>
-      <%# plant[:action][:plants_action][:month] %>
       <% end  %>
-      <br><br>
+      <br>
     <% end  %>
     
+  <br><br>
   <%= f.submit %>
+
+  <% end %>
+
   
-<% end %>
 
 <br><br>
 <%= link_to "Go back", plant_path(@plant) %>
