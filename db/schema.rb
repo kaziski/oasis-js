@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_133727) do
   end
 
   create_table "plants_actions", force: :cascade do |t|
-    t.date "month"
+    t.date "action_date"
     t.integer "plant_id"
     t.integer "action_id"
     t.datetime "created_at", null: false

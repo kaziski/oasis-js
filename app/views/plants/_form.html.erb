@@ -13,7 +13,7 @@
    <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
     <ul>
         <li><%= pa.label pa.object.action.action_name %>  <%= pa.check_box :action_id, {checked: false}, pa.object.action_id, ""%></li>
-            <%= pa.label "select a date" %> <%= pa.date_field :month %>
+            <%= pa.label "select a date" %> <%= pa.date_field :action_date %>
     </ul>
   <% end  %>
 
@@ -25,8 +25,8 @@
       <%= a.label :action_name %> <%= a.text_field :action_name %><br>
       <%# plant[actions_attributes][0][action_name] %>
       <%= a.fields_for :plants_actions do |apa| %>
-      <%= apa.label "select a date"  %> <%= apa.date_field :month %>
-      <%# plant[actions_attributes][0][plants_actions_attributes][0][month] %>
+      <%= apa.label "select a date"  %> <%= apa.date_field :action_date %>
+      <%# plant[actions_attributes][0][plants_actions_attributes][0][action_date] %>
       <% end  %>
       <br>
     <% end  %>
