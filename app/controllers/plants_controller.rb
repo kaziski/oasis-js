@@ -30,15 +30,7 @@ class PlantsController < ApplicationController
   end
 
   def update
-    # binding.pry 
-    @plant.update_attributes(plant_params)
-    # @plant.plants_actions.each do |pa|
-    #   # binding.pry
-    #   pa.update(action_date: pa.action_date) 
-    #   pa.save
-    # end
-    
-    
+    @plant.update_attributes(plant_params) 
     redirect_to plant_path(@plant)
   end
 
@@ -74,27 +66,3 @@ class PlantsController < ApplicationController
     @plant = Plant.find_by(id: params[:id])
   end
 end
-
-#Reject is date is not selected for an action
-
-# "plants_actions_attributes"=>{
-#   "0"=>{"action_id"=>"1", "action_date"=>"2019-04-01"}, 
-#   "1"=>{"action_id"=>"", "action_date"=>""}, 
-#   "2"=>{"action_id"=>"", "action_date"=>""}, 
-#   "3"=>{"action_id"=>"9", "action_date"=>"2019-05-01"}, 
-#   "4"=>{"action_id"=>"", "action_date"=>""}, 
-#   "5"=>{"action_id"=>"", "action_date"=>""}}, 
-#   "actions_attributes"=>{"0"=>{"action_name"=>"Trim", 
-#     "plants_actions_attributes"=>{"0"=>{"action_date"=>"2019-06-01"}
-
-# "name"=>"Mint", "in_the_garden"=>"0", "edible"=>"0", 
-# "annual"=>"1", "note"=>"", "plants_actions_attributes"=><ActionController::Parameters {
-#   "0"=><ActionController::Parameters {"action_id"=>"1", "action_date"=>"2019-04-01"} permitted: true>, 
-#   "1"=><ActionController::Parameters {"action_id"=>"", "action_date"=>""} permitted: true>, 
-#   "2"=><ActionController::Parameters {"action_id"=>"", "action_date"=>""} permitted: true>, 
-#   "3"=><ActionController::Parameters {"action_id"=>"9", "action_date"=>"2019-05-01"} permitted: true>, 
-#   "4"=><ActionController::Parameters {"action_id"=>"", "action_date"=>""} permitted: true>, 
-#   "5"=><ActionController::Parameters {"action_id"=>"", "action_date"=>""} permitted: true>} permitted: true>,
-#    "actions_attributes"=><ActionController::Parameters {
-#      "0"=><ActionController::Parameters {"action_name"=>"Trim", "plants_actions_attributes"=><ActionController::Parameters {
-#        "0"=><ActionController::Parameters {"action_date"=>"2019-06-01"} permitted: true>} perm
