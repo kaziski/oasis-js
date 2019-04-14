@@ -20,7 +20,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :users, only: [:index] do
-    resources :plants, only: [:index]
+  resources :users do
+    # resources :plants
+    get '/plants/plants', to: 'plants#plants'
   end
+
+  # resources :users, only: [:index] do
+  #   resources :plants, only: [:index]
+  # end
 end

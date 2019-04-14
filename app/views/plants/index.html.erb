@@ -1,6 +1,5 @@
 <h4>Plants you have logged </h4><br>
 <ul>
-<%#= binding.pry %>
 <% @plants.each do |plant| %>
   <% if plant.user_id ==  current_user.id%>
     <li><%= link_to plant.name, plant_path(plant) %></li>

@@ -1,8 +1,7 @@
 
 
 <ul><% @users.each do |user| %>
-  <li><%= link_to user.email.split('@')[0].capitalize, user_plants_path(user)%><br></li>
+  <li><%= link_to user.email.split('@')[0].capitalize,  user_plants_plants_path(user)%><br></li>
 <% end %></ul>
-<%# Can I limit that to admin? And maybe show user id? %>
 
  
