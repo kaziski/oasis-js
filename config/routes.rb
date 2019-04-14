@@ -7,11 +7,7 @@ Rails.application.routes.draw do
   authenticated do
     root :to => 'welcome#log_in_welcome'
   end
-
-  resources :actions 
-  #   :plantsactions
-  # end
-
+  
   get '/plants/in_garden', to: 'plants#in_garden'
   get '/plants/edible', to: 'plants#edible'
   get '/plants/annual', to: 'plants#annual'
@@ -19,10 +15,12 @@ Rails.application.routes.draw do
   resources :plants do
     resources :actions, only: [:index]
   end
+    
 
-  # resources :plants do
-  #   :plantsactions
-  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  resources :users, only: [:index] do
+    resources :plants, only: [:index]
+  end
 end

@@ -12,7 +12,7 @@
   <p>Please select actions need to be taken and set dates or create a new action</p>
   <br><br>
   
-   <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
+  <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
     <ul>                                                  
         <li><%= pa.label pa.object.action.action_name %>  <%= pa.hidden_field :action_id, :value => pa.object.action_id %>
 

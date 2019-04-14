@@ -24,9 +24,8 @@
         
     <%= f.fields_for :actions, @plant.plants_actions.build.build_action do |a| %>
       <%= a.label :action_name %> <%= a.text_field :action_name %><br>
+      
       <%= a.fields_for :plants_actions, @plant.plants_actions.build do |apa| %>
-          <%#= binding.pry  %>
-
       <%= apa.label "select a date"  %> <%= apa.date_field :action_date %>
       <% end  %>
       <br>

@@ -7,7 +7,6 @@
 <h4>Actions</h4>
 <% if @plant.actions.count > 0 %>
   <ul>
-  <%#= binding.pry %>
     <% @plant.plants_actions.each do |pa| %>
       <li><%= pa.action.action_name %>  Date: <%= pa.action_date %></li>
     <% end %>
