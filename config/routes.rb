@@ -13,19 +13,15 @@ Rails.application.routes.draw do
   get '/plants/annual', to: 'plants#annual'
 
   resources :plants do
-    resources :actions, only: [:index]
+    resources :actions
   end
     
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :users do
-    # resources :plants
-    get '/plants/plants', to: 'plants#plants'
+  resources :users, only: [:index] do
+    get '/plants', to: 'plants#plants'
   end
 
-  # resources :users, only: [:index] do
-  #   resources :plants, only: [:index]
-  # end
 end
