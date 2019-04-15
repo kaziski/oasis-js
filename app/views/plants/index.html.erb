@@ -1,8 +1,8 @@
-<h4>Plants you have logged </h4><br>
+<h4>Your Plants</h4><br>
 <ul>
 <% @plants.each do |plant| %>
   <% if plant.user_id ==  current_user.id%>
-    <li><%= link_to plant.name, plant_path(plant) %></li>
+    <li><%= link_to plant.name.capitalize, plant_path(plant) %></li>
   <% end %>
 <% end %>
 </ul><br><br><br>

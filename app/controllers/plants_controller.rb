@@ -1,6 +1,5 @@
 class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :edit, :update]
-  # before_action :authenticate_user!, except: [:show, :index]
   
   def index
     @plants = current_user.plants
