@@ -1,7 +1,12 @@
 class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :edit, :update]
-
+  # before_action :authenticate_user!, except: [:show, :index]
+  
   def index
+    @plants = current_user.plants
+  end
+
+  def plants
     @plants = Plant.all
   end
 
@@ -10,7 +15,7 @@ class PlantsController < ApplicationController
     Action.all.each do |action|
       @plant.plants_actions.build(action_id: action.id)
     end
-    @plant.actions.build.plants_actions.build
+    
   end
 
   def create
@@ -30,9 +35,10 @@ class PlantsController < ApplicationController
   end
 
   def update
-    @plant.update(plant_params)
-    redirect_to plants_path
+    @plant.update_attributes(plant_params) 
+    redirect_to plant_path(@plant)
   end
+
 
   def destroy
     Plant.find(params[:id]).destroy
@@ -55,14 +61,13 @@ class PlantsController < ApplicationController
 
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note,
-         :plants_actions_attributes => [:action_id, :month],
-         :actions_attributes => [:action_name, 
-          :plants_actions_attributes => [:month]]
+      :plants_actions_attributes => [:action_id, :action_date],
+      :actions_attributes => [:action_name, 
+        :plants_actions_attributes => [:action_date]]
     )
   end
 
   def set_plant
     @plant = Plant.find_by(id: params[:id])
   end
-
 end

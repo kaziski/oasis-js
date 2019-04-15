@@ -8,12 +8,14 @@
 <% if @plant.actions.count > 0 %>
   <ul>
     <% @plant.plants_actions.each do |pa| %>
-      <li><%= pa.action.action_name %>  Date: <%= pa.month %></li>
+      <li><%= pa.action.action_name %>  Date: <%= pa.action_date %></li>
     <% end %>
   </ul>
-<% end %><br><br>
-
-
+<% end %>
+<%=  link_to "Add More Actions", new_plant_action_path(@plant) %><br><br>
+<%# The link above is made to meet the requirement. 
+May delete after the assesment since a user can create new action in edit page %>
+<br><br>
 <%=  link_to "See all the plants", plants_path%><br><br>
 <%=  link_to "Edit this plant", edit_plant_path %><br><br>
 <%=  link_to "Delete this plant", @plant, method: :delete, data: { confirm: "Really?" } %>

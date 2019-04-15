@@ -1,0 +1,6 @@
+<% @plants.each do |plant| %>
+  <ul><% if  plant.user_id == params[:user_id].to_i %>
+    <li><%= plant.name %></li>
+  <% end %></ul>
+  
+<% end %>
