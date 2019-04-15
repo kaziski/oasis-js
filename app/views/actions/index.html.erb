@@ -1,0 +1,7 @@
+<h4>Actions </h4><br>
+<ul>
+<% @actions.each do |action| %>
+  <li><b><%= action.action_name %></b>   <%=  link_to "Delete this action", action, method: :delete, data: { confirm: "Really?" } %></li>
+<% end %>
+</ul><br><br>
+<%= link_to "Go Back", root_path %>

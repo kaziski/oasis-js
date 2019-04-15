@@ -1,18 +1,23 @@
 <h2>Welcome to Oasis App!</h2><br>
+<% if !current_user.admin %>
+  <% if number_of_plants > 0 %>
+    <h3>You have <b><%= number_of_plants %></b> plants in your log.</h3><br><br>
+    <%= link_to "View all the plants", plants_path %><br><br>
+  <% else %>
+    <h4>Looks like you don't have any plants in your log.</h4>
+    <h4>Let's get started by entering some plants in your log!</h4>
+  <% end %><br><br>
 
-<% if number_of_plants > 0 %>
-  <h3>You have <b><%= number_of_plants %></b> plants in your log.</h3><br><br>
-  <%= link_to "View all the plants", plants_path %><br><br>
-<% else %>
-  <h4>Looks like you don't have any plants in your log.</h4>
-  <h4>Let's get started by entering some plants in your log!</h4>
-<% end %><br><br>
-
-<%= link_to "Enter new plant", new_plant_path %><br><br>
+  <%= link_to "Enter new plant", new_plant_path %><br><br>
+<% end  %>
 <br><br>
 
 <% if current_user.admin %>
-  <h4><%= current_user.username.capitalize %>, you are logged in as an admin.</h4><br>
-  <p>You can <%= link_to "View all users", users_path %>.</p>
-  
+  <h4><b><%= current_user.username.capitalize %></b>, you are logged in as an admin.</h4><br>
+  <p>You can 
+  <ul>
+  <li><%= link_to "View all users", users_path %></li>
+  <li><%= link_to "View all actions", actions_path %></li>
+  </ul></p>
+    
 <% end  %>
