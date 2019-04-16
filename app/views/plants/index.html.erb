@@ -1,13 +1,22 @@
-<h4>Your Plants</h4><br>
+<% if current_user.admin %>
+  <h4><%= @plants_owner.username.capitalize %> has <%= @plants_owner.plants.count %> plants</h4>
+ <% else %>
+  <h4>You have <%= current_user.plants.count %> plants</h4>
+<% end %><br>
+
+
 <ul>
 <% @plants.each do |plant| %>
   <% if plant.user_id ==  current_user.id%>
     <li><%= link_to plant.name.capitalize, plant_path(plant) %></li>
+
+  <% else %>
+    <li><%=  plant.name%></li>
   <% end %>
 <% end %>
-</ul><br><br><br>
+</ul><br><br>
 
-<%= link_to "Enter more plant", new_plant_path %><br><br>
+<%= link_to "Enter more plant", new_plant_path %><br><br><br>
 
 <%= link_to "View all the plants in the garden", plants_in_garden_path %><br><br>
 <%= link_to "View edible plants", plants_edible_path %><br><br>
