@@ -2,6 +2,7 @@ class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :edit, :update]
   
   def index
+    # find user coming from url
     @plants = current_user.plants
   end
 
