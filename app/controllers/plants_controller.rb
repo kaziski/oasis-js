@@ -5,7 +5,6 @@ class PlantsController < ApplicationController
     if current_user.admin
       user_id = params[:user_id].to_i  
       @plants_owner = User.find(user_id)
-      
       @plants = Plant.where(user_id: user_id) 
     else
       @plants = current_user.plants
@@ -17,7 +16,6 @@ class PlantsController < ApplicationController
     Action.all.each do |action|
       @plant.plants_actions.build(action_id: action.id)
     end
-    
   end
 
   def create
@@ -25,7 +23,10 @@ class PlantsController < ApplicationController
     if @plant.save
       redirect_to plant_path(@plant)
     else
-      render :new
+      # render :new
+      # redirect_to new_plant_path, :flash => { :error => @plant.errors.full_messages.join(', ') }
+      flash[:error] = @plant.errors.full_messages
+      redirect_to new_plant_path 
     end
   end
 

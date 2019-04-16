@@ -27,7 +27,9 @@ Specs:
 - [x] Include third party signup/login (how e.g. Devise/OmniAuth)
       Devise/GoogleOauth2
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
+      Users/2/plants(only available for admin) 
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+      plants/2/actions/new 
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
