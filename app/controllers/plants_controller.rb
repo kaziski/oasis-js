@@ -5,6 +5,7 @@ class PlantsController < ApplicationController
     if current_user.admin
       user_id = params[:user_id].to_i  
       @plants_owner = User.find(user_id)
+      
       @plants = Plant.where(user_id: user_id) 
     else
       @plants = current_user.plants
