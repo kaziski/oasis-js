@@ -47,15 +47,15 @@ class PlantsController < ApplicationController
   end
 
   def in_garden
-    @plants = Plant.show_all_ingarden(current_user)
+    @plants = current_user.plants.where(in_the_garden: true)
   end
 
   def edible
-    @plants = Plant.show_all_edible(current_user)
+    @plants = current_user.plants.where(edible: true)
   end
 
   def annual
-    @plants = Plant.show_all_annual(current_user)
+    @plants = current_user.plants.where(annual: true)
   end
 
   private 

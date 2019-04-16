@@ -1,8 +1,0 @@
-<h4>This is a list of all the plants in the system</h4>
-
-<ul>
-<% @plants.each do |plant| %>
-  <li><%= link_to plant.name.capitalize, plant_path(plant) %></li>
-<% end %>
-</ul>
-
