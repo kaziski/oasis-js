@@ -1,13 +1,15 @@
 class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :edit, :update]
-  # before_action :authenticate_user!, except: [:show, :index]
   
   def index
-    @plants = current_user.plants
-  end
-
-  def plants
-    @plants = Plant.all
+    if current_user.admin
+      user_id = params[:user_id].to_i  
+      @plants_owner = User.find(user_id)
+      
+      @plants = Plant.where(user_id: user_id) 
+    else
+      @plants = current_user.plants
+    end
   end
 
   def new

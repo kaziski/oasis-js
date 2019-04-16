@@ -1,7 +1,8 @@
-User.create(username: 'kazumi', email: 'kazumi@gmail.com', password: 'password', admin: true) 
-User.create(username: 'john', email: 'john@gmail.com', password: 'password')
-User.create(username: 'keima', email: 'keima@gmail.com', password: 'password')
-User.create(username: 'jiji', email: 'jiji@gmail.com', password: 'password')
+User.create(username: 'kazumi', email: 'kazumi@gmail.com', password: '123456', admin: true) 
+User.create(username: 'john', email: 'john@gmail.com', password: '123456')
+User.create(username: 'keima', email: 'keima@gmail.com', password: '123456')
+User.create(username: 'jion', email: 'jion@gmail.com', password: '123456')
+User.create(username: 'admin', email: 'admin@gmail.com', password: '123456', admin: true)
 
 
 plant_list = [

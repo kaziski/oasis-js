@@ -1,42 +1,15 @@
-<h3>Let's enter a plant data!</h3>
-<br><br>
-<%= form_for @plant do |f| %>
-  Name: <%= f.text_field :name %><br><br>
-  Is it planted in your garden now?  <%= f.check_box :in_the_garden%><br><br>
-  Is it adible?  <%= f.check_box :edible %><br><br>
-  Is it an annual plant?  <%= f.check_box :annual %><br><br>
-  Memo: <%= f.text_field :note %><br><br>
+<% if @plant.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@plant.errors.count, "error") %>
+      prohibited this action from being saved:
+    </h2>
 
-  <br><br>
-  <h4>What do you need to do to the plant? When do they happen?</h4>
-  <p>Please select actions need to be taken and set dates or create a new action</p>
-  <br><br>
-  
-   <%= f.fields_for :plants_actions, @plant.plants_actions do |pa| %>
-    <ul>
-        <li><%= pa.label pa.object.action.action_name %>  <%= pa.check_box :action_id, {checked: false}, pa.object.action_id, ""%></li>
-            <%= pa.label "select a date" %> <%= pa.date_field :action_date %>
+     <ul>
+    <% @plant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
     </ul>
-    <% end  %>
-
-
-    <br><br>
-    Add more action : 
-        
-    <%= f.fields_for :actions, @plant.plants_actions.build.build_action do |a| %>
-      <%= a.label :action_name %> <%= a.text_field :action_name %><br>
-      
-      <%= a.fields_for :plants_actions, @plant.plants_actions.build do |apa| %>
-      <%= apa.label "select a date"  %> <%= apa.date_field :action_date %>
-      <% end  %>
-      <br>
-    <% end  %>
-    
-  <br><br>
-  <%= f.submit %>
-
-  <% end %>
-
-  
-<%= link_to "View all the plants", plants_path %>
-
+  </div>
+<% end %>
+<%= render :partial => 'form', :locals => {edit: false} %>

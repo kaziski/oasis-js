@@ -1,4 +1,4 @@
-<h3><%= @plant.name %></h3><br>
+<h3><%= @plant.name.capitalize %></h3><br>
 <h4>Is it planted in your garden? <%= in_the_garden? %></h4><br>
 <h4>Is it edible? <%= edible? %></h4><br>
 <h4>Is it an annual plant? <%= annual? %></h4><br>
@@ -8,7 +8,7 @@
 <% if @plant.actions.count > 0 %>
   <ul>
     <% @plant.plants_actions.each do |pa| %>
-      <li><%= pa.action.action_name %>  Date: <%= pa.action_date %></li>
+      <li><%= pa.action.action_name.capitalize %>  Date: <%= pa.action_date %></li>
     <% end %>
   </ul>
 <% end %>
