@@ -23,10 +23,8 @@ class PlantsController < ApplicationController
     if @plant.save
       redirect_to plant_path(@plant)
     else
-      # render :new
-      # redirect_to new_plant_path, :flash => { :error => @plant.errors.full_messages.join(', ') }
-      flash[:error] = @plant.errors.full_messages
-      redirect_to new_plant_path 
+      flash[:danger] =  @plant.errors.full_messages.join(", ") 
+      redirect_to new_plant_path
     end
   end
 
