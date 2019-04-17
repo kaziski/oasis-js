@@ -5,7 +5,11 @@ class ActionsController < ApplicationController
   end
 
   def index
-    @actions = Action.all
+    if current_user.admin
+      @actions = Action.all
+      else
+        redirect_to :root 
+      end
   end
 
   def destroy

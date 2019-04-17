@@ -8,7 +8,6 @@ class Plant < ApplicationRecord
   validates :name, presence: true
     
   def plants_actions_attributes=(plant_action_attribute)
-
     plant_action_attribute.values.each do |plant_action_hash|
 
     if plant_action_hash[:action_date].present?
