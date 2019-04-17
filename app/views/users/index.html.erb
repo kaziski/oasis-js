@@ -1,5 +1,4 @@
 <h4>Users</h4>
-
 <ul><% @users.each do |user| %>
 <% if !user.admin %>
     <li><%= link_to user.email.split('@')[0].capitalize,  user_plants_path(user)%><br></li>
@@ -8,3 +7,4 @@
 <br><br>
 <%= link_to "Go Back", root_path %>
  
+
