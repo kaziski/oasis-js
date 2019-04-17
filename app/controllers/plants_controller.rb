@@ -23,7 +23,11 @@ class PlantsController < ApplicationController
     if @plant.save
       redirect_to plant_path(@plant)
     else
-      flash[:danger] =  @plant.errors.full_messages.to_sentence
+      if @plant.errors.messages.keys[0] == :"plants_actions.action" 
+          flash[:danger] = "You need to check a checkbox if you want to select a date."
+      else
+        flash[:danger] =  @plant.errors.full_messages.to_sentence
+      end
       redirect_to new_plant_path
     end
   end
@@ -72,10 +76,3 @@ class PlantsController < ApplicationController
     @plant = Plant.find_by(id: params[:id])
   end
 end
-# @messages=
-#   {:"plants_actions.action"=>
-#     ["You need to check a checkbox first before selecting a date."]}>
-# @messages=
-#   {:"plants_actions.action"=>
-#     ["You need to check a checkbox first before selecting a date."],
-#    :name=>["can't be blank"]}>
