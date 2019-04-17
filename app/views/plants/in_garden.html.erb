@@ -1,2 +1,5 @@
 <h3>Plants that are in your garden</h3><br><br>
+<% if @plants.count == 0 %>
+  <div class='alert alert-info'><%= flash[:info] = "You don't have anything planted in your garden yet."%></div>
+<% end %>
 <%= render 'booleans' %>

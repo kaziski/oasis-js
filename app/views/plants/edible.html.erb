@@ -1,2 +1,5 @@
 <h3>Plants that are edible</h3><br><br>
+<% if @plants.count == 0 %>
+  <div class='alert alert-info'><%= flash[:info] = "You don't have any edible plant yet."%></div>
+<% end %>
 <%= render 'booleans' %>
