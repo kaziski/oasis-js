@@ -1,10 +1,7 @@
-<ul>
-
-<% @plants = @plants.sort {|a,b|a.name <=> b.name} %>
+<ul><% @plants = @plants.sort {|a,b|a.name <=> b.name} %>
 <% @plants.each do |plant| %>
 <li><h4><%= plant.name %></h4></li>
-<% end %>
+<% end %></ul>
 
-
-</ul><br><br>
+<br><br>
 <%= link_to "View all the plants", plants_path %>
