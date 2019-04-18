@@ -7,13 +7,12 @@
 <h4>Actions</h4>
 <% if @plant.actions.count > 0 %>
   <ul>
-  <% plantsactions = @plant.plants_actions.sort {|a,b|a.action_date <=> b.action_date} %>
-    <% plantsactions.each do |pa| %>
+  <% @plant.plants_actions.each do |pa| %>
       <li><%= pa.action.action_name.capitalize %>  Date: <%= pa.action_date %></li>
     <% end %>
   </ul>
 <% end %>
-<%=  link_to "Add More Actions", new_plant_action_path(@plant) %><br><br>
+<%=  link_to "Create another action", new_plant_action_path(@plant) %><br><br>
 <%# The link above is made to meet the requirement. 
 May delete after the assesment since a user can create new action in edit page %>
 <br><br>

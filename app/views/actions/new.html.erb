@@ -1,13 +1,9 @@
-<h4>Add more action to <b><%= @plant.name %></b></h4>
+<h4>Create a new action to <b><%= @plant.name %></b></h4>
 
-<%= form_for @plant do |f| %>
-<%= f.fields_for :actions, @plant.plants_actions.build.build_action do |a| %>
-      <%= a.label :action_name %> <%= a.text_field :action_name %><br>
-      
-      <%= a.fields_for :plants_actions, @plant.plants_actions.build do |apa| %>
-      <%= apa.label "select a date"  %> <%= apa.date_field :action_date %>
-      <% end  %>
-      <br>
+<%= form_for @action do |f| %>
+  <%= f.label :action_name %> <%= f.text_field :action_name %><br>
+  <%= f.fields_for :plants_actions, @action.plants_actions.build do |a| %>
+      <%= a.label "select a date"  %> <%= a.date_field :action_date %>
     <% end  %>
     
   <br><br>
