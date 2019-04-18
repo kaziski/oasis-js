@@ -9,8 +9,12 @@ class PlantsActionsController < ApplicationController
   def create
     @plant = Plant.find_by(id: params[:plant_id]) 
     @plant_action = @plant.plants_actions.build(plants_action_params)
-    @plant_action.save
-    redirect_to plant_path(@plant)
+    if @plant_action.save
+      redirect_to plant_path(@plant)
+    else
+      flash[:danger] = "Name can't be blank"
+      redirect_to new_plant_plants_action_path
+    end
   end
 
   private

@@ -2,8 +2,8 @@ class Action < ApplicationRecord
   has_many :plants_actions
   has_many :plants, through: :plants_actions
   accepts_nested_attributes_for :plants_actions, :allow_destroy => true
-  validates :action_name, presence: true
-  validates_uniqueness_of :action_name, :message => "must be unique"
+  validates_presence_of :action_name
+  validates_uniqueness_of :action_name
 
 
   def plants_actions_attributes=(plant_action_attribute)

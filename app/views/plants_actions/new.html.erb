@@ -1,8 +1,15 @@
+<% if flash[:danger] %>
+    <div class='alert alert-danger'><%= flash[:danger] %></div>
+<% end %>
+<h4>Creating an action for <b><%= @plant.name%></b></h4>
+<br>
 <%= form_for @plant_action, url: plant_plants_actions_path do |f| %>
 
   <%= f.fields_for :action, @plant_action.build_action do |a| %>
     <%= a.label :action_name %><%= a.text_field :action_name%><br>
   <% end %>
-<%= f.label "select a date"  %> <%= f.date_field :action_date %><br>
+<%= f.label "select a date"  %> <%= f.date_field :action_date %><br><br>
 <%= f.submit "Create an action"%>
 <% end %>
+<br><br>
+<%= link_to "Go back", plant_path(@plant) %>
