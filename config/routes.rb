@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   get '/plants/annual', to: 'plants#annual'
 
   resources :plants do
-    resources :actions
+    resources :actions, only: :index
+    resources :plants_actions, only: [:new, :create]
   end
-  
+
   resources :actions, only: [:index, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

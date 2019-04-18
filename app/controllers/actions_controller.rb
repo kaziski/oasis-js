@@ -1,11 +1,5 @@
 class ActionsController < ApplicationController
   
-  def new
-    @plant = Plant.find_by(id: params[:plant_id]) 
-    @action = @plant.actions.build
-  end
-
-  def create
   end
 
   def index
@@ -20,4 +14,5 @@ class ActionsController < ApplicationController
     Action.find(params[:id]).destroy
     redirect_to actions_path
   end
+
 end
