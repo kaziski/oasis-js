@@ -1,11 +1,13 @@
 class PlantsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_plant, only: [:show, :edit, :update]
   
   def index
     if current_user.admin
-      user_id = params[:user_id].to_i  
-      @plants_owner = User.find(user_id)
-      @plants = Plant.where(user_id: user_id) 
+      owner_id = params[:user_id].to_i  
+      @plants_owner = User.find(owner_id)
+      @plants = Plant.where(user_id: owner_id) 
     else
       @plants = current_user.plants
     end
@@ -36,7 +38,7 @@ class PlantsController < ApplicationController
   end
 
   def update
-    @plant.update_attributes(plant_params) 
+    @plant.update(plant_params) 
     redirect_to plant_path(@plant)
   end
 
@@ -63,9 +65,8 @@ class PlantsController < ApplicationController
   def plant_params
     params.require(:plant).permit(:name, :in_the_garden, :edible, :annual, :user_id, :note,
       :plants_actions_attributes => [:action_id, :action_date],
-      :actions_attributes => [:action_name, 
-        :plants_actions_attributes => [:action_date]]
-    )
+      :actions_attributes => [:action_name,
+        :plants_actions_attributes => :action_date])
   end
 
   def set_plant

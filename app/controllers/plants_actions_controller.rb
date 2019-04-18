@@ -1,5 +1,6 @@
 class PlantsActionsController < ApplicationController
-
+  before_action :authenticate_user!
+    
   def new
     @plant = Plant.find_by(id: params[:plant_id]) 
     @plant_action = @plant.plants_actions.build

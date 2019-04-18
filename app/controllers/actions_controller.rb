@@ -1,6 +1,4 @@
 class ActionsController < ApplicationController
-  
-  end
 
   def index
     if current_user.admin
