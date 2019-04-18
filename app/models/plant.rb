@@ -5,18 +5,14 @@ class Plant < ApplicationRecord
   accepts_nested_attributes_for :plants_actions, :allow_destroy => true
   accepts_nested_attributes_for :actions, :allow_destroy => true
 
-  validates :name, presence: true
+  validates_presence_of :name, :message => "for plant can't be blank."
     
   def plants_actions_attributes=(plant_action_attribute)
     plant_action_attribute.values.each do |plant_action_hash|
-
     if plant_action_hash[:action_date].present?
-        pa = PlantsAction.new(action_date: plant_action_hash[:action_date], action_id: plant_action_hash[:action_id])
-        if self.plants_actions.find_by(action_id: plant_action_hash[:action_id])
-          existing_pa = self.plants_actions.find_by(action_id: plant_action_hash[:action_id])
-          existing_pa.destroy
-        end
-        self.plants_actions << pa
+      pa = PlantsAction.find_or_create_by(plant_id: self.id, action_id: plant_action_hash[:action_id])
+      pa.update(action_date: plant_action_hash[:action_date])
+      self.plants_actions << pa unless self.id
       end
     end
   end
@@ -32,3 +28,11 @@ class Plant < ApplicationRecord
 
 end
 
+# plant_action_attribute                              
+# => {"0"=>{"action_id"=>"", "action_date"=>""},
+#  "1"=>{"action_id"=>"2", "action_date"=>"2019-04-01"},
+#  "2"=>{"action_id"=>"", "action_date"=>""},
+#  "3"=>{"action_id"=>"4", "action_date"=>"2019-06-01"},
+#  "4"=>{"action_id"=>"", "action_date"=>""},
+#  "5"=>{"action_id"=>"", "action_date"=>""},
+#  "6"=>{"action_id"=>"", "action_date"=>""}}
