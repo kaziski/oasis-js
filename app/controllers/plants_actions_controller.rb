@@ -12,7 +12,7 @@ class PlantsActionsController < ApplicationController
     if @plant_action.save
       redirect_to plant_path(@plant)
     else
-      flash[:danger] = "Name can't be blank"
+      flash[:danger] = "Both fields need filled and a name has to be unique."
       redirect_to new_plant_plants_action_path
     end
   end
