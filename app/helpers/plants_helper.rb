@@ -35,5 +35,4 @@ module PlantsHelper
     Action.find(id).action_name 
   end 
 
-
 end
