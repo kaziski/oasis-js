@@ -27,6 +27,7 @@ class PlantsController < ApplicationController
     else
         flash[:danger] =  @plant.errors.full_messages.to_sentence
       redirect_to new_plant_path
+      #render new and restyle flash
     end
   end
 
@@ -42,22 +43,21 @@ class PlantsController < ApplicationController
     redirect_to plant_path(@plant)
   end
 
-
   def destroy
     Plant.find(params[:id]).destroy
     redirect_to plants_path
   end
 
   def in_garden
-    @plants = current_user.plants.where(in_the_garden: true)
+    @plants  = Plant.in_garden_msd(current_user)
   end
 
   def edible
-    @plants = current_user.plants.where(edible: true)
+    @plants  = Plant.edible_msg(current_user)
   end
 
   def annual
-    @plants = current_user.plants.where(annual: true)
+    @plants = Plant.annual_msg(current_user)
   end
 
   private 

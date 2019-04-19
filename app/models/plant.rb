@@ -26,13 +26,16 @@ class Plant < ApplicationRecord
     end
   end
 
-end
+  def self.in_garden_msd(user)
+    where(in_the_garden: true, user_id: user.id)
+  end
 
-# plant_action_attribute                              
-# => {"0"=>{"action_id"=>"", "action_date"=>""},
-#  "1"=>{"action_id"=>"2", "action_date"=>"2019-04-01"},
-#  "2"=>{"action_id"=>"", "action_date"=>""},
-#  "3"=>{"action_id"=>"4", "action_date"=>"2019-06-01"},
-#  "4"=>{"action_id"=>"", "action_date"=>""},
-#  "5"=>{"action_id"=>"", "action_date"=>""},
-#  "6"=>{"action_id"=>"", "action_date"=>""}}
+  def self.edible_msg(user)
+    where(edible: true, user_id: user.id)
+  end
+
+  def self.annual_msg(user)
+    where(annual: true, user_id: user.id)
+  end
+
+end
