@@ -10,6 +10,8 @@ gem 'pg'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'active_model_serializers'
+
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

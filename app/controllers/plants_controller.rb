@@ -11,6 +11,10 @@ class PlantsController < ApplicationController
     else
       @plants = current_user.plants
     end
+    respond_to do |f|
+      f.html
+      f.json {render json: @plants}
+    end
   end
 
   def new
