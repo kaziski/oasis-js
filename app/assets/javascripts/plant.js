@@ -5,8 +5,8 @@ $(() => {
 });
 
 const listenForClick = () => {
-  $('button#show-button').on('click', () => {
-    event.preventDefault()
+  $('button#show-button').on('click', (e) => {
+    e.preventDefault()
     console.log('clicked!!!!!!!')
     getPlants()
   } )
@@ -15,8 +15,20 @@ const listenForClick = () => {
 const getPlants =  () => {
   fetch(`/plants.json`)
     .then((res) => res.json())
-    .then(data => {
+    .then(plants => {
       $('button#show-button').hide()
-      $('#show-plants').html('oi!')
+      plants.forEach((plant) => {
+        let newPlant = new Plant(plant)
+        console.log(newPlant)
+      })
+      // $('#show-plants').html('oi!')
     }) 
+}
+
+function Plant(plant) {
+  this.id = plant.id
+  this.name = plant.name
+  this.in_the_garden = plant.in_the_garden
+  this.edible = plant.edible
+  this.annual = plant.annual
 }
