@@ -11,6 +11,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'active_model_serializers'
+gem 'jquery-rails'
 
 
 # Use Puma as the app server
