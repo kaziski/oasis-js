@@ -2,7 +2,10 @@
 <% if !current_user.admin %>
   <% if number_of_plants > 0 %>
     <h3>You have <b><%= number_of_plants %></b> plants in your log.</h3><br><br>
-    <%= link_to "View all the plants", plants_path %><br><br>
+    <p><%#= link_to "View all the plants", plants_path %></p>
+    <button id='show-button'>Show Plants</button>
+    <div id='show-plants'></div>
+    <br><br>
   <% else %>
     <h4>Looks like you don't have any plants in your log.</h4>
     <h4>Let's get started by entering some plants in your log!</h4>
