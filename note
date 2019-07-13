@@ -1,0 +1,31 @@
+// {% if in_the_garden == false %}
+    // <h2>is not planted in your garden yet</h2>
+    // {% else %}
+    // <h2>is in the garden</h2>
+    // {% end %}
+
+    let showPlantHtml = `
+    <h3>${this.id}. ${this.name}</h3>
+    <% if ${this.in_the_garden} == false %>
+    <h3>is not planted yet.</h3>
+    <% else %>
+    <h3>is in your garden.</h3>
+    <% end %>
+  `
+Plant.prototype.formatShow = function() {
+  let showPlantHtml = ` <h3>${this.id}. ${this.name}</h3>
+  <div class="in-garden">
+    ${
+      (in_the_garden => {
+        if (in_the_garden == true)
+          return html`<h4>is planted in your garden.</h4>`
+          else
+          return html`<h4>is not planted in your garden yet.</h4>`
+        })(this.in_the_garden)
+      }
+    }
+  </div>
+`
+  return showPlantHtml
+  }
+

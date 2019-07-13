@@ -1,15 +1,29 @@
-// $( document ).ready(function() {
 $(() => {
   console.log('plant.js is loaded ...')
-  listenForClick();
+  listenForClick()
 });
 
 const listenForClick = () => {
   $('button#show-button').on('click', (e) => {
     e.preventDefault()
-    console.log('clicked!!!!!!!')
+    // history.pushState(null, null, "plants")
     getPlants()
-  } )
+  })
+
+  $(document).on('click', ".show-link", function(e) {
+    e.preventDefault()
+    let id = $(this).attr('data-id')
+    fetch(`/plants/${id}.json`)
+    .then((res) => res.json())
+    .then(plant => {
+      let newPlant = new Plant(plant)
+      let showPlantHtml = newPlant.formatShow()
+      $('#show-plants').html('')
+
+      $('#show-plants').append(showPlantHtml)
+    })
+  })
+
 }
 
 const getPlants =  () => {
@@ -19,10 +33,11 @@ const getPlants =  () => {
       $('button#show-button').hide()
       plants.forEach((plant) => {
         let newPlant = new Plant(plant)
-        console.log(newPlant)
-      })
-      // $('#show-plants').html('oi!')
-    }) 
+        let plantHtml = newPlant.formatIndex()
+        $('#show-plants').append(plantHtml)
+    })
+    console.log('Index is loaded...')
+  }) 
 }
 
 function Plant(plant) {
@@ -32,3 +47,30 @@ function Plant(plant) {
   this.edible = plant.edible
   this.annual = plant.annual
 }
+
+Plant.prototype.formatIndex = function() {
+  let plantHtml = `
+  <ul>
+    <li><a href="/plants/${this.id}" data-id="${this.id}" class="show-link">${this.name}</a></li>
+  </ul>
+  `
+  return plantHtml
+}
+
+Plant.prototype.formatShow = function() {
+  let showPlantHtml = `<h3>${this.name}</h3>
+  <div class="in-garden">
+    ${
+      (in_the_garden => {
+        if (in_the_garden == true)
+        return `<h4>is planted in your garden.</h4>`
+        else 
+        return `<h4>is not planted in your garden yet.</h4>`
+      })(this.in_the_garden)
+    }
+  </div>
+  `
+  return showPlantHtml
+}
+  
+
