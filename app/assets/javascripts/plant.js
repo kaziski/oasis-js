@@ -29,7 +29,7 @@ const getPlants =  () => {
 const showPlant = () => {
   $(document).on('click', ".show-link", function(e) {
     e.preventDefault()
-    let id = $(this).attr('data-id')
+    let id = $(this).data("id")
     fetch(`/plants/${id}.json`)
     .then((res) => res.json())
     .then(plant => {
@@ -48,7 +48,6 @@ const getPlantsAgain = () => {
   $('button#show-again-button').on('click', (e) => {
     e.preventDefault()
     fetch(`/plants.json`)
-    .then((res) => res.json())
     .then(plants => {
       $('div#show-plants').html('')
       plants.forEach((plant) => {
@@ -62,11 +61,24 @@ const getPlantsAgain = () => {
 }
 
 const getActions = () => {
-  $('button#action-button').on('click', (e) => {
+  $('button#action-button').on('click', function (e) {
     e.preventDefault()
     console.log("hey you touched me")
-    fetch(`/plants/12.json`)
-    .then((res) => console.log(res))
+    let id = $(this).data("id")
+    fetch(`/plants/${id}.json`)
+    .then((res) => res.json())
+    .then(plantsObj => {
+      $('div#show-actions').hide()
+      getActionName()
+    })
+  })
+}
+
+const getActionName = () => {
+  plantsObj.actions.forEach((action) => {
+    actionName = action["action_name"]
+    console.log(actionName)
+    return actionName
   })
 }
 
@@ -119,8 +131,9 @@ Plant.prototype.formatShow = function() {
       })(this.annual)
     }
   </div><br><br>
-  <button id="action-button">View actions</button>
-  <div id='show-actions'></div><br><br><br><br>
+  <div id='show-actions'>
+    <button data-id="${this.id}" id="action-button">View actions</button>
+  </div><br><br><br><br>
   <button id="show-again-button">Show Plants Again</button>
   <div id='show-plants-again'></div>
   `
