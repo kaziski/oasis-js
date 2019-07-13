@@ -40,6 +40,7 @@ const showPlant = () => {
       getPlantsAgain()
       getActions()
     })
+    console.log('showing a plant...')
   })
   
 }
@@ -63,24 +64,31 @@ const getPlantsAgain = () => {
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
     e.preventDefault()
-    console.log("hey you touched me")
+    console.log("Action button clicked.")
     let id = $(this).data("id")
+    let actionList = ""
     fetch(`/plants/${id}.json`)
     .then((res) => res.json())
     .then(plantsObj => {
-      $('div#show-actions').hide()
-      getActionName()
+      $('button#action-button').hide()
+      plantsObj.actions.forEach((action) => {
+        actionList += `<ul>
+          <li>${action["action_name"]}</li>
+        </ul>
+        `
+      })
+      // plantsObj.plants_actions.forEach((plant_action) => {
+      //   plantActionList += `<ul>
+      //   <li>${plant_action["action_date"]}</li>
+      // </ul>
+      // `
+      // })
+      $('div#show-actions').append(actionList)
     })
   })
 }
 
-const getActionName = () => {
-  plantsObj.actions.forEach((action) => {
-    actionName = action["action_name"]
-    console.log(actionName)
-    return actionName
-  })
-}
+
 
 function Plant(plant) {
   this.id = plant.id
