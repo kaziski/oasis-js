@@ -39,6 +39,16 @@ const showPlant = () => {
       $('#show-plants').append(showPlantHtml)
     })
   })
+  showNextPlant()
+}
+
+const showNextPlant = () => {
+  $(document).on('click', "#next-button", function(e) {
+    e.preventDefault()
+    console.log('next plant clicked')
+    debugger
+    // let id = $(this).attr('data-id')
+  })
 }
 
 function Plant(plant) {
@@ -89,7 +99,9 @@ Plant.prototype.formatShow = function() {
         return `<h4>and is not an annual plant.</h4>`
       })(this.annual)
     }
-  </div>
+  </div><br><br>
+  <button id="next-button"  data-id="${this.id}">Show next plant</button>
+  <div id="next-plants"></div>
   `
   return showPlantHtml
 }
