@@ -63,10 +63,30 @@ Plant.prototype.formatShow = function() {
     ${
       (in_the_garden => {
         if (in_the_garden == true)
-        return `<h4>is planted in your garden.</h4>`
+        return `<h4>is planted in your garden,</h4>`
         else 
-        return `<h4>is not planted in your garden yet.</h4>`
+        return `<h4>is not planted in your garden yet,</h4>`
       })(this.in_the_garden)
+    }
+  </div>
+  <div class="edible">
+    ${
+      (edible => {
+        if (edible == true)
+        return `<h4>is edible,</h4>`
+        else 
+        return `<h4>is not edible,</h4>`
+      })(this.edible)
+    }
+  </div>
+  <div class="annual">
+    ${
+      (annual => {
+        if (annual == true)
+        return `<h4>and is an annual plant.</h4>`
+        else 
+        return `<h4>and is not an annual plant.</h4>`
+      })(this.annual)
     }
   </div>
   `
