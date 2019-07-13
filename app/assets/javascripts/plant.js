@@ -38,6 +38,7 @@ const showPlant = () => {
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml)
       getPlantsAgain()
+      getActions()
     })
   })
   
@@ -57,6 +58,14 @@ const getPlantsAgain = () => {
     })
     console.log('Index is loaded again...')
   }) 
+  })
+}
+
+const getActions = () => {
+  $('button#action-button').on('click', (e) => {
+    e.preventDefault()
+    console.log("hey you touched me")
+    fetch(`/plants`)
   })
 }
 
@@ -109,6 +118,8 @@ Plant.prototype.formatShow = function() {
       })(this.annual)
     }
   </div><br><br>
+  <button id="action-button">View actions</button>
+  <div id='show-actions'></div><br><br><br><br>
   <button id="show-again-button">Show Plants Again</button>
   <div id='show-plants-again'></div>
   `
