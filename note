@@ -1,2 +1,21 @@
 <button id="next-button"  data-id="${this.id}">Show next plant</button>
   <div id="next-plants"></div>
+
+
+  const getPlantsAgain = () => {
+  $('button#show-again-button').on('click', (e) => {
+    e.preventDefault()
+    console.log('heeeeeeeeeeeeee')
+    fetch(`/plants.json`)
+    .then((res) => res.json())
+    .then(plants => {
+      $('button#show-again-button').hide()
+      plants.forEach((plant) => {
+        let newPlant = new Plant(plant)
+        let plantHtml = newPlant.formatIndex()
+        $('#show-plants-again').append(plantHtml)
+    })
+    console.log('Index is loaded again...')
+  }) 
+  })
+}

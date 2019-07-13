@@ -37,7 +37,26 @@ const showPlant = () => {
       let showPlantHtml = newPlant.formatShow()
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml)
+      getPlantsAgain()
     })
+  })
+  
+}
+
+const getPlantsAgain = () => {
+  $('button#show-again-button').on('click', (e) => {
+    e.preventDefault()
+    fetch(`/plants.json`)
+    .then((res) => res.json())
+    .then(plants => {
+      $('div#show-plants').html('')
+      plants.forEach((plant) => {
+        let newPlant = new Plant(plant)
+        let plantHtml = newPlant.formatIndex()
+        $('div#show-plants').append(plantHtml)
+    })
+    console.log('Index is loaded again...')
+  }) 
   })
 }
 
@@ -89,7 +108,9 @@ Plant.prototype.formatShow = function() {
         return `<h4>and is not an annual plant.</h4>`
       })(this.annual)
     }
-  </div>
+  </div><br><br>
+  <button id="show-again-button">Show Plants Again</button>
+  <div id='show-plants-again'></div>
   `
   return showPlantHtml
 }
