@@ -67,6 +67,7 @@ const getActions = () => {
     console.log("Action button clicked.")
     let id = $(this).data("id")
     let actionList = ""
+    let plantActionList = ""
     fetch(`/plants/${id}.json`)
     .then((res) => res.json())
     .then(plantsObj => {
@@ -77,13 +78,13 @@ const getActions = () => {
         </ul>
         `
       })
-      // plantsObj.plants_actions.forEach((plant_action) => {
-      //   plantActionList += `<ul>
-      //   <li>${plant_action["action_date"]}</li>
-      // </ul>
-      // `
-      // })
-      $('div#show-actions').append(actionList)
+      plantsObj.plants_actions.forEach((plant_action) => {
+        plantActionList += `<ul>
+        <li>${plant_action["action_date"]}</li>
+      </ul>
+      `
+      })
+      $('div#show-actions').append(actionList).append(plantActionList)
     })
   })
 }
