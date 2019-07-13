@@ -9,21 +9,7 @@ const listenForClick = () => {
     // history.pushState(null, null, "plants")
     getPlants()
   })
-
-  $(document).on('click', ".show-link", function(e) {
-    e.preventDefault()
-    let id = $(this).attr('data-id')
-    fetch(`/plants/${id}.json`)
-    .then((res) => res.json())
-    .then(plant => {
-      let newPlant = new Plant(plant)
-      let showPlantHtml = newPlant.formatShow()
-      $('#show-plants').html('')
-
-      $('#show-plants').append(showPlantHtml)
-    })
-  })
-
+  showPlant()
 }
 
 const getPlants =  () => {
@@ -38,6 +24,21 @@ const getPlants =  () => {
     })
     console.log('Index is loaded...')
   }) 
+}
+
+const showPlant = () => {
+  $(document).on('click', ".show-link", function(e) {
+    e.preventDefault()
+    let id = $(this).attr('data-id')
+    fetch(`/plants/${id}.json`)
+    .then((res) => res.json())
+    .then(plant => {
+      let newPlant = new Plant(plant)
+      let showPlantHtml = newPlant.formatShow()
+      $('#show-plants').html('')
+      $('#show-plants').append(showPlantHtml)
+    })
+  })
 }
 
 function Plant(plant) {
