@@ -80,11 +80,12 @@ const getActions = () => {
       })
       plantsObj.plants_actions.forEach((plant_action) => {
         plantActionList += `<ul>
-        <li>${plant_action["action_date"]}</li>
+        <li style="list-style: none;">${plant_action["action_date"]}</li>
       </ul>
       `
       })
-      $('div#show-actions').append(actionList).append(plantActionList)
+      $('div#action').append(actionList)
+      $('div#action-date').append(plantActionList)
     })
   })
 }
@@ -141,6 +142,10 @@ Plant.prototype.formatShow = function() {
     }
   </div><br><br>
   <div id='show-actions'>
+    <div class="action-grid">
+      <div id="action"></div>
+      <div id="action-date"></div>
+    </div>
     <button data-id="${this.id}" id="action-button">View actions</button>
   </div><br><br><br><br>
   <button id="show-again-button">Show Plants Again</button>

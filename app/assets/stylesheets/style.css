@@ -1,0 +1,15 @@
+.action-grid{
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 5px;
+}
+
+div#action-date{
+  width: 120px;
+}
+
+div#action{
+  width: 90px;
+  border-right: 0px;
+  margin-right: 0px;
+}
