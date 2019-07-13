@@ -65,7 +65,8 @@ const getActions = () => {
   $('button#action-button').on('click', (e) => {
     e.preventDefault()
     console.log("hey you touched me")
-    fetch(`/plants`)
+    fetch(`/plants/12.json`)
+    .then((res) => console.log(res))
   })
 }
 
