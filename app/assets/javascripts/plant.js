@@ -49,6 +49,7 @@ const getPlantsAgain = () => {
   $('button#show-again-button').on('click', (e) => {
     e.preventDefault()
     fetch(`/plants.json`)
+    .then((res) => res.json())
     .then(plants => {
       $('div#show-plants').html('')
       plants.forEach((plant) => {
