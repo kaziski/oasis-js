@@ -19,3 +19,12 @@
   }) 
   })
 }
+
+
+  <div id='show-actions'>
+        <div class="action-grid">
+          <div id="action"></div>
+          <div id="action-date"></div>
+        </div>
+        <button data-id="${this.id}" id="action-button">View actions</button>
+      </div>

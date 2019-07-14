@@ -60,24 +60,6 @@ const getPlantsAgain = () => {
   }) 
   })
 }
-// $("#myDiv").find("li.selected > a")
-// function checkActions() {
-//     $(document).on('click', ".plant-ul a", function(e) {
-
-//     e.preventDefault()
-//     console.log('checking actions...')
-//     debugger
-
-//     let id = $('div#show-plants h3').data("id")
-//     fetch(`/plants/${id}.json`)
-//     .then((res) => res.json())
-//     .then(plantsObj => {
-//       if (plantsObj.actions.length > 0){
-//         getActions()
-//       }
-//       })
-//     })
-// }
 
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
@@ -86,10 +68,12 @@ const getActions = () => {
     let id = $(this).data("id")
     let actionList = ""
     let plantActionList = ""
+    let noActionHtml = ""
     fetch(`/plants/${id}.json`)
     .then((res) => res.json())
     .then(plantsObj => {
-      $('button#action-button').hide()
+      if (plantsObj.actions.length > 0){
+        $('button#action-button').hide()
       plantsObj.actions.forEach((action) => {
         actionList += `<ul>
           <li>${action["action_name"]}</li>
@@ -104,11 +88,15 @@ const getActions = () => {
       })
       $('div#action').append(actionList)
       $('div#action-date').append(plantActionList)
+      }else{
+        $('button#action-button').hide()
+        noActionHtml = `<p>You haven't logged any actions yet.</p>`
+        $('.annual').append(noActionHtml)
+      }
+      
     })
   })
 }
-
-
 
 function Plant(plant) {
   this.id = plant.id
@@ -159,13 +147,15 @@ Plant.prototype.formatShow = function() {
       })(this.annual)
     }
   </div><br><br>
+  
   <div id='show-actions'>
-    <div class="action-grid">
-      <div id="action"></div>
-      <div id="action-date"></div>
-    </div>
-    <button data-id="${this.id}" id="action-button">View actions</button>
-  </div><br><br><br><br>
+        <div class="action-grid">
+          <div id="action"></div>
+          <div id="action-date"></div>
+        </div>
+        <button data-id="${this.id}" id="action-button">View actions</button>
+  </div>
+  <br><br><br><br>
   <button id="show-again-button">Show Plants Again</button>
   <div id='show-plants-again'></div>
   `
