@@ -1,6 +1,7 @@
 $(() => {
   console.log('plant.js is loaded ...')
   listenForClick()
+  listenForSubmit()
 });
 
 const listenForClick = () => {
@@ -93,11 +94,22 @@ const getActions = () => {
         noActionHtml = `<p>You haven't logged any actions yet.</p>`
         $('.annual').append(noActionHtml)
       }
-      
     })
   })
 }
 
+const listenForSubmit = () => {
+  console.log('listenForSubmit is triggered...')
+  $('.submit-form').on('submit', (e) => {
+    e.preventDefault()
+    console.log('form connected')
+    // postPlant()
+  })
+}
+
+// const postPlant = () => {
+
+// }
 function Plant(plant) {
   this.id = plant.id
   this.name = plant.name
