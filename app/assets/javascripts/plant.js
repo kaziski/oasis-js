@@ -42,7 +42,6 @@ const showPlant = () => {
     })
     console.log('showing a plant...')
   })
-  
 }
 
 const getPlantsAgain = () => {
@@ -61,6 +60,24 @@ const getPlantsAgain = () => {
   }) 
   })
 }
+// $("#myDiv").find("li.selected > a")
+// function checkActions() {
+//     $(document).on('click', ".plant-ul a", function(e) {
+
+//     e.preventDefault()
+//     console.log('checking actions...')
+//     debugger
+
+//     let id = $('div#show-plants h3').data("id")
+//     fetch(`/plants/${id}.json`)
+//     .then((res) => res.json())
+//     .then(plantsObj => {
+//       if (plantsObj.actions.length > 0){
+//         getActions()
+//       }
+//       })
+//     })
+// }
 
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
@@ -103,7 +120,7 @@ function Plant(plant) {
 
 Plant.prototype.formatIndex = function() {
   let plantHtml = `
-  <ul>
+  <ul class="plant-ul"> 
     <li><a href="/plants/${this.id}" data-id="${this.id}" class="show-link">${this.name}</a></li>
   </ul>
   `
@@ -111,7 +128,7 @@ Plant.prototype.formatIndex = function() {
 }
 
 Plant.prototype.formatShow = function() {
-  let showPlantHtml = `<h3>${this.name}</h3>
+  let showPlantHtml = `<h3 data-id="${this.id}">${this.name}</h3>
   <div class="in-garden">
     ${
       (in_the_garden => {
