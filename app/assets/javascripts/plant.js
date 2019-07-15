@@ -104,29 +104,18 @@ const listenForSubmit = () => {
     $('form').submit(function(e) {
     e.preventDefault()
     console.log('hijacking dom')
-    debugger
-
     const values = $(this).serialize()
-    console.log(values)
-    // $.post('/plants', values)
-    // .done(function(data){
-    //   console.log(data)
-    //   $('#app-container').html('')
-    //   $('#app-container').html('<h3>Hey is this working?</h3>')
-    // })
+    $.post('/plants', values)
+    .done(function(data){
+      console.log(data)
+      $('#app-container').html('')
+      const newPlant = new Plant(data)
+      debugger
+      const htmlToAdd = newPlant.formatShow()
+      $('#app-container').html(htmlToAdd)
+    })
   })
 }
-
-// const postPlant = () => {
-//   const values = $(this).serialize 
-//   console.log(values)
-//   // $.post("/plants", values )
-//   // .done(function(data) {
-//   //   console.log(data)
-//   //   $('#app-container').html('')
-//   //   $('#app-container').html('<h3>Hey is this working?</h3>')
-//   // })
-// }
 
 function Plant(plant) {
   this.id = plant.id
