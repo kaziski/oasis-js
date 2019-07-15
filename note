@@ -1,0 +1,10 @@
+const listenForSubmit = () => {
+  console.log('listenForSubmit is triggered...')
+  // $('.submit-form').on('click', function(e) {
+  $('a .new_plant').on('submit', function(e) {
+
+    e.preventDefault()
+    console.log('form connected')
+    // postPlant()
+  })
+}

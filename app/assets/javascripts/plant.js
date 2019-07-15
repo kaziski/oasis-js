@@ -100,16 +100,36 @@ const getActions = () => {
 
 const listenForSubmit = () => {
   console.log('listenForSubmit is triggered...')
-  $('.submit-form').on('submit', (e) => {
+  $('div#app-container').on('submit', (e) => {
     e.preventDefault()
     console.log('form connected')
     // postPlant()
   })
 }
 
-// const postPlant = () => {
+ // const postPlant = () => {
 
+ // }
+// $(function () {
+//   $('form').submit(function(event) {
+//     debugger
+//     //prevent form from submitting the default way
+//     event.preventDefault();
+//     alert("we r hack3rz");
+//   });
+// });
+
+// const postPlant = () => {
+//   const values = $(this).serialize 
+//   console.log(values)
+//   $.post("/plants", values )
+//   .done(function(data) {
+//     console.log(data)
+//     $('#app-container').html('')
+//     $('#app-container').html('<h3>Hey is this working?</h3>')
+//   })
 // }
+
 function Plant(plant) {
   this.id = plant.id
   this.name = plant.name

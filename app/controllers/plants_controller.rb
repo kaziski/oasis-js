@@ -1,6 +1,5 @@
 class PlantsController < ApplicationController
   before_action :authenticate_user!
-
   before_action :set_plant, only: [:show, :edit, :update]
   
   def index
@@ -27,8 +26,11 @@ class PlantsController < ApplicationController
   def create
     @plant = current_user.plants.new(plant_params)
     if @plant.save
-      # redirect_to plant_path(@plant)
-      render json: @plant 
+      redirect_to plant_path(@plant)
+      # respond_to do |f|
+			# 	f.html {redirect_to plants_path}
+			# 	f.json {render json: @plants}
+			# end
     else
         flash[:danger] =  @plant.errors.full_messages.to_sentence
       redirect_to new_plant_path
