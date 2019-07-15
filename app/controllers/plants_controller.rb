@@ -30,6 +30,7 @@ class PlantsController < ApplicationController
     if @plant.save
       # redirect_to plant_path(@plant)
       # render json: @post, status: 201
+      #if I use the code above, data returns null
       respond_to do |f|
 				f.html {redirect_to plants_path}
 				f.json {render json: @plants}
