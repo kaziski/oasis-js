@@ -1,10 +1,5 @@
-const listenForSubmit = () => {
-  console.log('listenForSubmit is triggered...')
-  // $('.submit-form').on('click', function(e) {
-  $('a .new_plant').on('submit', function(e) {
+View action and show plants again is not working on plants/new
 
-    e.preventDefault()
-    console.log('form connected')
-    // postPlant()
-  })
-}
+because it's not triggered right.
+
+Mess with the render on create and give option of html? or not?

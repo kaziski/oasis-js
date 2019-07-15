@@ -105,19 +105,12 @@ const listenForSubmit = () => {
     e.preventDefault()
     console.log('hijacking dom')
     const values = $(this).serialize()
-    debugger
 
     $.post('/plants', values)
     .done(function(data){
       $('#app-container').html('')
-      // $('#app-container').html('<h3>hijacked!!!</h3>')
-      debugger
-
-      const newPlant = new Plant(data)
-      const plant = data;
-      debugger
-      // data returns undefined plant obj
-       
+      
+      const newPlant = new Plant(data)           
       const htmlToAdd = newPlant.formatShow()
       $('#app-container').html(htmlToAdd)
     })
