@@ -1,9 +1,9 @@
 <% if flash[:danger] %>
     <div class='alert alert-danger'><%= flash[:danger] %></div>
 <% end %>
-<div class="form-container">
+<%#=div class="form-container">
 <%#= form_for @plant, :html => {class: 'submit-form'} do |f| %>
-  <%= form_for @plant do |f| %>
+  <%= form_for @plant, :html => {:id => "new_plant"} do |f| %>
 
     Name: <%= f.text_field :name %><br><br>
     Is it planted in your garden now?  <%= f.check_box :in_the_garden%><br><br>
@@ -43,7 +43,6 @@
       
     <br><br>
   <%= f.submit %>
-</div>
   <% end %>
   <br><br>
 <%= link_to "View all the plants", plants_path %>

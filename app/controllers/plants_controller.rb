@@ -1,4 +1,6 @@
 class PlantsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :authenticate_user!
   before_action :set_plant, only: [:show, :edit, :update]
   
@@ -27,6 +29,7 @@ class PlantsController < ApplicationController
     @plant = current_user.plants.new(plant_params)
     if @plant.save
       # redirect_to plant_path(@plant)
+      # render json: @post, status: 201
       respond_to do |f|
 				f.html {redirect_to plants_path}
 				f.json {render json: @plants}
