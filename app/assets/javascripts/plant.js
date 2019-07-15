@@ -107,18 +107,6 @@ const listenForSubmit = () => {
   })
 }
 
- // const postPlant = () => {
-
- // }
-// $(function () {
-//   $('form').submit(function(event) {
-//     debugger
-//     //prevent form from submitting the default way
-//     event.preventDefault();
-//     alert("we r hack3rz");
-//   });
-// });
-
 // const postPlant = () => {
 //   const values = $(this).serialize 
 //   console.log(values)
