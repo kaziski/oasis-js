@@ -27,7 +27,8 @@ class PlantsController < ApplicationController
   def create
     @plant = current_user.plants.new(plant_params)
     if @plant.save
-      redirect_to plant_path(@plant)
+      # redirect_to plant_path(@plant)
+      render json: @plant 
     else
         flash[:danger] =  @plant.errors.full_messages.to_sentence
       redirect_to new_plant_path
