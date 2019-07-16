@@ -1,8 +1,7 @@
 <% if flash[:danger] %>
     <div class='alert alert-danger'><%= flash[:danger] %></div>
 <% end %>
-<%#=div class="form-container">
-<%#= form_for @plant, :html => {class: 'submit-form'} do |f| %>
+<div class="form-container">
   <%= form_for @plant, :html => {:id => "new_plant"} do |f| %>
 
     Name: <%= f.text_field :name %><br><br>
@@ -45,5 +44,6 @@
   <%= f.submit %>
   <% end %>
   <br><br>
+</div>
 <%= link_to "View all the plants", plants_path %>
 

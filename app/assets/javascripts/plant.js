@@ -2,7 +2,6 @@ $(() => {
   if ($('.logged-in').length){
     console.log('plant.js is loaded ...')
     listenForClick()
-    listenForSubmit()
   }
 });
 
@@ -41,8 +40,13 @@ const showSinglePlant = () => {
     .then(plant => {
       let newPlant = new Plant(plant)
       let showPlantHtml = newPlant.formatShow()
+      let showPlantsAgainHtml = `
+      <div id='show-plants-again'>
+        <button id="show-again-button">Show Plants Again</button>
+      </div>
+      `
       $('#show-plants').html('')
-      $('#show-plants').append(showPlantHtml)
+      $('#show-plants').append(showPlantHtml).append(showPlantsAgainHtml)
       getActions()
       showPlantsAgain()
     })
@@ -103,6 +107,13 @@ const getActions = () => {
     })
   })
 }
+
+$(() => {
+  if ($('.form-container').length){
+    console.log('form is loaded ...')
+    listenForSubmit()
+  }
+});
 
 const listenForSubmit = () => {
   console.log('listenForSubmit is triggered...')
@@ -180,9 +191,6 @@ Plant.prototype.formatShow = function() {
         <button data-id="${this.id}" id="action-button">View actions</button>
   </div>
   <br><br><br><br>
-  <div id='show-plants-again'>
-    <button id="show-again-button">Show Plants Again</button>
-  </div>
   `
   return showPlantHtml
 }
