@@ -12,6 +12,7 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'active_model_serializers'
 gem 'jquery-rails'
+# gem "omniauth-rails_csrf_protection"
 
 
 # Use Puma as the app server

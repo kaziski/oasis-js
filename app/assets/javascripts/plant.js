@@ -1,6 +1,5 @@
 $(() => {
   if ($('.logged-in').length){
-    console.log('plant.js is loaded ...')
     listenForClick()
   }
 });
@@ -8,15 +7,12 @@ $(() => {
 const listenForClick = () => {
   $('button#show-button').on('click', (e) => {
     e.preventDefault()
-    console.log('listenForClick triggered')
     // history.pushState(null, null, "plants")
     showPlants()
   })
 }
 
 const showPlants =  () => {
-  console.log('showPlants triggered')
-
   fetch(`/plants.json`)
     .then((res) => res.json())
     .then(plants => {
@@ -26,7 +22,6 @@ const showPlants =  () => {
         let plantHtml = newPlant.formatIndex()
         $('#show-plants').append(plantHtml)
     })
-    console.log('showPlants is loaded...')
     showSinglePlant()
   }) 
 }
@@ -50,14 +45,12 @@ const showSinglePlant = () => {
       getActions()
       showPlantsAgain()
     })
-    console.log('showing a plant...')
   })
 }
 
 const showPlantsAgain = () => {
   $('button#show-again-button').on('click', (e) => {
     e.preventDefault()
-    console.log("ShowPlantsAgain button clicked.")
     fetch(`/plants.json`)
     .then((res) => res.json())
     .then(plants => {
@@ -66,16 +59,14 @@ const showPlantsAgain = () => {
         let newPlant = new Plant(plant)
         let plantHtml = newPlant.formatIndex()
         $('div#show-plants').append(plantHtml)
-    })
-    console.log('Index is loaded again...')
-  }) 
+      })
+    }) 
   })
 }
 
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
     e.preventDefault()
-    console.log("Action button clicked.")
     let id = $(this).data("id")
     let actionList = ""
     let plantActionList = ""
@@ -116,15 +107,12 @@ $(() => {
 });
 
 const listenForSubmit = () => {
-  console.log('listenForSubmit is triggered...')
     $('form').submit(function(e) {
     e.preventDefault()
-    console.log('hijacking dom for listenForSubmit...')
     const values = $(this).serialize()
     $.post('/plants', values)
     .done(function(data){
       $('#app-container').html('')
-      
       const newPlant = new Plant(data)           
       const htmlToAdd = newPlant.formatShow()
       $('#app-container').append(htmlToAdd)
