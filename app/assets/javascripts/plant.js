@@ -38,29 +38,29 @@ const showPlant = () => {
       let showPlantHtml = newPlant.formatShow()
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml)
-      getPlantsAgain()
+      // getPlantsAgain()
       getActions()
     })
     console.log('showing a plant...')
   })
 }
 
-const getPlantsAgain = () => {
-  $('button#show-again-button').on('click', (e) => {
-    e.preventDefault()
-    fetch(`/plants.json`)
-    .then((res) => res.json())
-    .then(plants => {
-      $('div#show-plants').html('')
-      plants.forEach((plant) => {
-        let newPlant = new Plant(plant)
-        let plantHtml = newPlant.formatIndex()
-        $('div#show-plants').append(plantHtml)
-    })
-    console.log('Index is loaded again...')
-  }) 
-  })
-}
+// const getPlantsAgain = () => {
+//   $('button#show-again-button').on('click', (e) => {
+//     e.preventDefault()
+//     fetch(`/plants.json`)
+//     .then((res) => res.json())
+//     .then(plants => {
+//       $('div#show-plants').html('')
+//       plants.forEach((plant) => {
+//         let newPlant = new Plant(plant)
+//         let plantHtml = newPlant.formatIndex()
+//         $('div#show-plants').append(plantHtml)
+//     })
+//     console.log('Index is loaded again...')
+//   }) 
+//   })
+// }
 
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
@@ -100,7 +100,6 @@ const getActions = () => {
 
 const listenForSubmit = () => {
   console.log('listenForSubmit is triggered...')
-  // $('form#new_plant').on('submit', (e) => {
     $('form').submit(function(e) {
     e.preventDefault()
     console.log('hijacking dom')
@@ -113,9 +112,18 @@ const listenForSubmit = () => {
       const newPlant = new Plant(data)           
       const htmlToAdd = newPlant.formatShow()
       $('#app-container').html(htmlToAdd)
+      getActions()
     })
   })
 }
+
+const listenForShowPlantsAgain = () => {
+  $('button#show-again-button').on('click', function (e) {
+    e.preventDefault()
+  console.log('listenForSubmit is triggered...')
+  })
+}
+
 
 function Plant(plant) {
   this.id = plant.id
