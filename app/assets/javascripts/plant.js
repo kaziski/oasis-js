@@ -1,18 +1,23 @@
 $(() => {
-  console.log('plant.js is loaded ...')
-  listenForClick()
-  listenForSubmit()
+  if ($('.logged-in').length){
+    console.log('plant.js is loaded ...')
+    listenForClick()
+    listenForSubmit()
+  }
 });
 
 const listenForClick = () => {
   $('button#show-button').on('click', (e) => {
     e.preventDefault()
+    console.log('listenForClick triggered')
     // history.pushState(null, null, "plants")
     showPlants()
   })
 }
 
 const showPlants =  () => {
+  console.log('showPlants triggered')
+
   fetch(`/plants.json`)
     .then((res) => res.json())
     .then(plants => {
@@ -103,9 +108,8 @@ const listenForSubmit = () => {
   console.log('listenForSubmit is triggered...')
     $('form').submit(function(e) {
     e.preventDefault()
-    console.log('hijacking dom')
+    console.log('hijacking dom for listenForSubmit...')
     const values = $(this).serialize()
-
     $.post('/plants', values)
     .done(function(data){
       $('#app-container').html('')
