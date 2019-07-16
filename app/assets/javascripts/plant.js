@@ -8,12 +8,11 @@ const listenForClick = () => {
   $('button#show-button').on('click', (e) => {
     e.preventDefault()
     // history.pushState(null, null, "plants")
-    getPlants()
+    showPlants()
   })
-  showPlant()
 }
 
-const getPlants =  () => {
+const showPlants =  () => {
   fetch(`/plants.json`)
     .then((res) => res.json())
     .then(plants => {
@@ -23,11 +22,12 @@ const getPlants =  () => {
         let plantHtml = newPlant.formatIndex()
         $('#show-plants').append(plantHtml)
     })
-    console.log('Index is loaded...')
+    console.log('showPlants is loaded...')
+    showSinglePlant()
   }) 
 }
 
-const showPlant = () => {
+const showSinglePlant = () => {
   $(document).on('click', ".show-link", function(e) {
     e.preventDefault()
     let id = $(this).data("id")
@@ -38,29 +38,30 @@ const showPlant = () => {
       let showPlantHtml = newPlant.formatShow()
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml)
-      // getPlantsAgain()
       getActions()
     })
     console.log('showing a plant...')
   })
+  showPlantsAgain()
 }
 
-// const getPlantsAgain = () => {
-//   $('button#show-again-button').on('click', (e) => {
-//     e.preventDefault()
-//     fetch(`/plants.json`)
-//     .then((res) => res.json())
-//     .then(plants => {
-//       $('div#show-plants').html('')
-//       plants.forEach((plant) => {
-//         let newPlant = new Plant(plant)
-//         let plantHtml = newPlant.formatIndex()
-//         $('div#show-plants').append(plantHtml)
-//     })
-//     console.log('Index is loaded again...')
-//   }) 
-//   })
-// }
+const showPlantsAgain = () => {
+  $('button#show-again-button').on('click', (e) => {
+    e.preventDefault()
+    console.log("ShowPlantsAgain button clicked.")
+    fetch(`/plants.json`)
+    .then((res) => res.json())
+    .then(plants => {
+      $('div#show-plants').html('')
+      plants.forEach((plant) => {
+        let newPlant = new Plant(plant)
+        let plantHtml = newPlant.formatIndex()
+        $('div#show-plants').append(plantHtml)
+    })
+    console.log('Index is loaded again...')
+  }) 
+  })
+}
 
 const getActions = () => {
   $('button#action-button').on('click', function (e) {
@@ -111,18 +112,18 @@ const listenForSubmit = () => {
       
       const newPlant = new Plant(data)           
       const htmlToAdd = newPlant.formatShow()
-      $('#app-container').html(htmlToAdd)
+      $('#app-container').append(htmlToAdd)
       getActions()
     })
   })
 }
 
-const listenForShowPlantsAgain = () => {
-  $('button#show-again-button').on('click', function (e) {
-    e.preventDefault()
-  console.log('listenForSubmit is triggered...')
-  })
-}
+// const listenForShowPlantsAgain = () => {
+//   $('button#show-again-button').on('click', function (e) {
+//     e.preventDefault()
+//   console.log('listenForSubmit is triggered...')
+//   })
+// }
 
 
 function Plant(plant) {

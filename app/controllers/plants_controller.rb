@@ -1,5 +1,5 @@
 class PlantsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   before_action :authenticate_user!
   before_action :set_plant, only: [:show, :edit, :update]

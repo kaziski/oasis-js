@@ -3,3 +3,5 @@ View action and show plants again is not working on plants/new
 because it's not triggered right.
 
 Mess with the render on create and give option of html? or not?
+
+  # I'm deleting the gem below because of "WARN Selenium [DEPRECATION] Selenium::WebDriver::Chrome#driver_path= is deprecated. Use Selenium::WebDriver::Chrome::Service#driver_path= instead." error msg
