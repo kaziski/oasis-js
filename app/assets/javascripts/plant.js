@@ -39,10 +39,10 @@ const showSinglePlant = () => {
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml)
       getActions()
+      showPlantsAgain()
     })
     console.log('showing a plant...')
   })
-  showPlantsAgain()
 }
 
 const showPlantsAgain = () => {
@@ -118,14 +118,6 @@ const listenForSubmit = () => {
   })
 }
 
-// const listenForShowPlantsAgain = () => {
-//   $('button#show-again-button').on('click', function (e) {
-//     e.preventDefault()
-//   console.log('listenForSubmit is triggered...')
-//   })
-// }
-
-
 function Plant(plant) {
   this.id = plant.id
   this.name = plant.name
@@ -184,8 +176,9 @@ Plant.prototype.formatShow = function() {
         <button data-id="${this.id}" id="action-button">View actions</button>
   </div>
   <br><br><br><br>
-  <button id="show-again-button">Show Plants Again</button>
-  <div id='show-plants-again'></div>
+  <div id='show-plants-again'>
+    <button id="show-again-button">Show Plants Again</button>
+  </div>
   `
   return showPlantHtml
 }
