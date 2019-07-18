@@ -2,7 +2,7 @@ $(() => {
   if ($('.logged-in').length){
     listenForClick()
   }
-});
+})
 
 const listenForClick = () => {
   $('button#show-button').on('click', (e) => {
@@ -19,7 +19,9 @@ const showPlants =  () => {
       $('button#show-button').hide()
       plants.forEach((plant) => {
         let newPlant = new Plant(plant)
+        //line 124
         let plantHtml = newPlant.formatIndex()
+        //line 133
         $('#show-plants').append(plantHtml)
     })
     showSinglePlant()
@@ -34,7 +36,9 @@ const showSinglePlant = () => {
     .then((res) => res.json())
     .then(plant => {
       let newPlant = new Plant(plant)
+      //line 124
       let showPlantHtml = newPlant.formatShow()
+      //line 143
       let showPlantsAgainHtml = `
       <div id='show-plants-again'>
         <button id="show-again-button">Show Plants Again</button>
@@ -42,6 +46,7 @@ const showSinglePlant = () => {
       `
       $('#show-plants').html('')
       $('#show-plants').append(showPlantHtml).append(showPlantsAgainHtml)
+
       getActions()
       showPlantsAgain()
     })
@@ -101,12 +106,11 @@ const getActions = () => {
 
 $(() => {
   if ($('.form-container').length){
-    console.log('form is loaded ...')
-    listenForSubmit()
+    handleSubmit()
   }
 });
 
-const listenForSubmit = () => {
+const handleSubmit = () => {
     $('form').submit(function(e) {
     e.preventDefault()
     const values = $(this).serialize()
@@ -139,7 +143,9 @@ Plant.prototype.formatIndex = function() {
 }
 
 Plant.prototype.formatShow = function() {
-  let showPlantHtml = `<h3 data-id="${this.id}">${this.name}</h3>
+  let showPlantHtml = `
+  <h3 data-id="${this.id}">${this.name}</h3>
+  <br>
   <div class="in-garden">
     ${
       (in_the_garden => {

@@ -11,7 +11,7 @@ ruby 2.5.3
 #### Deployment instructions
 
 You can try Plantalog [here](https://plantalog.herokuapp.com/).
-**Please note you can NOT login using Google oauth2 on my Heroku app yet.
+**Please note you can NOT login using Google oauth2 on my Heroku app yet. 
 
 or
 

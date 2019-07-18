@@ -30,11 +30,6 @@ class PlantsController < ApplicationController
     if @plant.save
       # redirect_to plant_path(@plant)
       render json: @plant, status: 201
-      #if I use the code above, data returns null
-      # respond_to do |f|
-			# 	f.html {redirect_to plants_path}
-			# 	f.json {render json: @plants}
-			# end
     else
         flash[:danger] =  @plant.errors.full_messages.to_sentence
       redirect_to new_plant_path
