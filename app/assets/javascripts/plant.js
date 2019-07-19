@@ -175,10 +175,10 @@ Plant.prototype.formatShow = function() {
         return `<h4>and is not an annual plant.</h4>`
       })(this.annual)
     }
-  /div><br><br>
+  </div><br><br>
  
-  div id='show-ations'>
-        <div clas="action-grid">
+  <div id='show-actions'>
+        <div class="action-grid">
           <div id="action"></div>
           <div id="action-date"></div>
         </div>
