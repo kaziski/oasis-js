@@ -107,8 +107,16 @@ const getActions = () => {
 $(() => {
   if ($('.form-container').length){
     handleSubmit()
+    handleChecked()
   }
 });
+
+const handleChecked = () => {
+  $( "[type=checkbox]" ).on('click', function (e) {
+    e.preventDefault
+    console.log('checked')
+  })
+}
 
 const handleSubmit = () => {
     $('form').submit(function(e) {
