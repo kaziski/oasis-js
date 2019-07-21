@@ -70,7 +70,7 @@ const showPlantsAgain = () => {
 }
 
 const getActions = () => {
-  $('button#action-button').on('click', function (e) {
+  $('button#action-button').on('click', (e) => {
     e.preventDefault()
     let id = $(this).data("id")
     let actionList = ""
