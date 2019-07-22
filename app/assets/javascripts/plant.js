@@ -19,7 +19,7 @@ const showPlants =  () => {
       $('button#show-button').hide()
       plants.forEach((plant) => {
         let newPlant = new Plant(plant)
-        //line 124
+        //line 128
         let plantHtml = newPlant.formatIndex()
         //line 133
         $('#show-plants').append(plantHtml)
@@ -36,9 +36,9 @@ const showSinglePlant = () => {
     .then((res) => res.json())
     .then(plant => {
       let newPlant = new Plant(plant)
-      //line 124
+      //line 128
       let showPlantHtml = newPlant.formatShow()
-      //line 143
+      //line 145
       let showPlantsAgainHtml = `
       <div id='show-plants-again'>
         <button id="show-again-button">Show Plants Again</button>
@@ -70,7 +70,7 @@ const showPlantsAgain = () => {
 }
 
 const getActions = () => {
-  $('button#action-button').on('click', (e) => {
+  $('button#action-button').on('click', function(e){
     e.preventDefault()
     let id = $(this).data("id")
     let actionList = ""
